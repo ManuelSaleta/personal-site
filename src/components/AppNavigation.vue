@@ -1,6 +1,6 @@
 <template>
   <v-app-bar
-    color="#6d8c94"
+    color="#000000"
     scroll-behavior="fade-image"
     image="/src/assets/banner.png"
     loading="lazy"
