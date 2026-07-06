@@ -2,56 +2,69 @@
   "experience": [
     {
       "id": 1,
-      "heading": "Senior FullStack Software Engineer",
-      "sub_heading": "Sion Central  10/2024 – Present",
+      "heading": "INDEPENDENT PROJECTS & CONTRIBUTIONS",
+      "sub_heading": "CREATOR & MAINTAINER | FULL-STACK ENGINEERING",
       "contributions": [
-        "Designed and implemented secure authentication and authorization flows with Auth0, enabling SSO and MFA for financial application customers",
-        "Integrated SendGrid and Twilio for transactional email and SMS workflows for onboarding, alerts, and transaction confirmations",
-        "Built payment and account-management systems with encryption in transit and at rest to meet GDPR and secure high-volume transactions",
-        "Owned infrastructure as code using Terraform; developed reusable modules, managed remote state, and provisioned multi-environment AWS and Kubernetes infrastructure",
-        "Implemented GDPR/PII-compliant logging, RBAC, centralized secrets management, audit logging, CI/CD policy gates, monitoring, and alerting"
+        "Engineered a high-throughput, unified API gateway in .NET 10 providing a single, OpenAl-compatible abstraction layer for 10+ major LLM providers (including OpenAl, Anthropic, Gemini, and Mistral).",
+        "Designed and orchestrated a self-healing, multi-node container environment leveraging Kubernetes (K3s) and Docker to ensure fault tolerance and resilient workload deployments.",
+        "Automated cluster lifecycles and VM template provisioning by developing modular Infrastructure as Code (laC) architectures utilizing Terraform and Packer scripts.",
+        "Secured node communication and eliminated configuration drift across critical cluster nodes using automated operational pipelines, Cloudflare DNS tunnels, and Tailscale networking.",
+        "Architected TypeScript-driven Vue.js applications on GCP (Firebase Hosting & Cloud Firestore), optimizing NoSQL query structures to efficiently render large-scale document datasets.",
+        "Technical Workshop Facilitator (FIU MangoHacks & Shell Hacks): Mentored aspiring software engineers, leading workshops focused on modern web application design, system architecture, and production API integrations."
       ]
     },
     {
       "id": 2,
-      "heading": "FullStack Software Engineer",
-      "sub_heading": "Bitstop ATM OPS Inc  06/2021 – 2024",
+      "heading": "SENIOR SOFTWARE ENGINEER",
+      "sub_heading": "SION CENTRAL | 10/2024-05/2026",
       "contributions": [
-        "Led ReactJS code reviews and developed components using hooks, Redux, React Router, React-i18next, and React Spring to improve UX and platform functionality",
-        "Refactored critical e-commerce pricing APIs from Python to C#, deployed with Docker & Kubernetes to achieve 99.95% uptime and reduce developer overhead by 20%",
-        "Integrated cloud-based financial services (BitGO API, Bitcoin Average API) to mitigate security risks and support high-traffic transaction volumes",
-        "Architected and implemented scalable microservices with Docker and Kubernetes to support ATM management, data exports, and API configurations",
-        "Introduced peer code-review and documentation into acceptance criteria, managed two developer teams, and improved automated testing and release quality",
-        "Designed and maintained RabbitMQ-based messaging infrastructure to enable reliable asynchronous processing and reduce HTTP chaining"
+        "Architected and managed multi-environment AWS and Kubernetes deployments using reusable Terraform laC modules, automating remote state management to guarantee 100% reproducible infrastructure.",
+        "Engineered high-performance Ruby and AWS APIs optimized for complex financial arithmetic, significantly reducing data processing latency and accelerating reporting visibility for FinTech clients.",
+        "Built a scalable, multi-tenant financial reporting web Ul from scratch using Vue.js, TypeScript, and Tailwind CSS, delivering a modernized analytics dashboard for enterprise users.",
+        "De-risked high-volume financial transactions by engineering automated GDPR and Pll compliance pipelines, integrating RBAC, centralized secrets management, and strict CI/CD policy gates.",
+        "Implemented secure identity management infrastructure using Auth0 and Terraform, successfully provisioning enterprise-grade SSO and MFA across all customer-facing applications."
       ]
     },
     {
       "id": 3,
-      "heading": "Software Engineer",
-      "sub_heading": "Amadeus North America  02/2017 – 06/2021",
+      "heading": "LEAD SOFTWARE ENGINEER",
+      "sub_heading": "BITSTOP | 06/2021-2024",
       "contributions": [
-        "Created API integrations for OperaPMS, ShijiPMS, HotSOS, and HotSOS Mobile, reducing manual transcription and cutting cleaning task time from 12 to 7 minutes",
-        "Led migration to a web-based client using Angular, C#, SQL, and Azure; owned mobile development using Java, Kotlin, and Objective-C to increase staff visibility and planning",
-        "Refactored legacy .NET Framework applications to .NET Core to improve performance, scalability, and maintainability",
-        "Transitioned architecture from monolithic to microservices to enhance modularity, fault tolerance, and scalability"
+        "Elevated system uptime to 99.95% and slashed operational overhead by 20% by migrating critical e-commerce pricing APIs from Python to .NET Core, containerized via Docker and Kubernetes.",
+        "Accelerated development velocity and minimized production bugs by directing 2 cross-functional teams totaling 13 senior engineers, establishing robust peer code-review systems, and standardizing technical documentation.",
+        "Optimized compute footprint and modernized legacy enterprise portfolios by driving seamless, backward-compatible migrations from legacy.NET Framework to modern .NET Core.",
+        "Decoupled internal architectures and eliminated rigid HTTP chaining by designing high-throughput microservices leveraging RabbitMQ for asynchronous message brokering.",
+        "Executed zero-downtime migrations of self-hosted financial services to institutional-grade integrations (BitGo, Bitcoin Average APIs), drastically reducing infrastructure risk.",
+        "Eliminated manual configuration drift and established strict environment parity by architecting multi-environment cloud infrastructure using Terraform laC configurations."
       ]
     },
     {
       "id": 4,
-      "heading": "Software Engineer",
-      "sub_heading": "Assurant IT Solutions  10/2016 – 01/2017",
+      "heading": "SOFTWARE ENGINEER",
+      "sub_heading": "AMADEUS HOSPITALITY | 02/2017 - 06/2021",
       "contributions": [
-        "Organized corporate-sponsored internal hackathons and built web apps to track departmental POC initiatives",
-        "Developed Alexa Skills for interactive payment options and collaborated directly with the VP of Technologies to execute events"
+        "Slashed average room turnaround times from 12 minutes to 7 minutes by driving API integrations with core hospitality enterprise systems (OperaPMS, ShijiPMS, and HotSOS) to optimize back-office operations.",
+        "Bolstered system fault tolerance and infrastructure scalability by transitioning monolithic hotel management stacks to modular cloud microservices leveraging C# APIs, Angular frontends, and Microsoft Azure.",
+        "Eliminated physical paper logging across hotel operations by building and deploying native mobile integrations (Java/Kotlin for Android, Objective-C/Swift for iOS), delivering real-time tablet interfaces for on-the-ground staff.",
+        "Unlocked siloed legacy database analytics by engineering advanced data-visualization and reporting modules, empowering administrators with deep operational insights."
       ]
     },
     {
       "id": 5,
-      "heading": "Tutor / Instructor",
-      "sub_heading": "FIU STARS Tutoring 02/2015 – 09/2016",
+      "heading": "SOFTWARE ENGINEER",
+      "sub_heading": "ASSURANT IT SOLUTIONS | 10/2016-01/2017",
       "contributions": [
-        "Provided individualized tutoring in Database Management, web development, Programming I–III, Operating Systems, Linux administration, and Application Security",
-        "Improved student pass rates by tailoring study sessions and coursework support to individual learning needs"
+        "Automated experimental payment processing workflows by developing and embedding voice-driven Alexa Skills into web applications, significantly reducing manual touchpoints.",
+        "Enforced strict data governance and document consistency across enterprise cloud services by designing custom integration layers connecting Microsoft SharePoint libraries via Power Automate."
+      ]
+    },
+    {
+      "id": 6,
+      "heading": "PROGRAMMING TUTOR III",
+      "sub_heading": "FIU STARS TUTORING | 02/2015- 09/2016",
+      "contributions": [
+        "Accelerated student retention and course pass rates across advanced Computer Science modules by delivering targeted, individualized technical instruction and code mentorship.",
+        "Cultivated foundational engineering skills in aspiring developers by conducting technical deep-dives into Operating Systems, Linux System Administration, Database Management, Application Security, and Object-Oriented Design."
       ]
     }
   ]
