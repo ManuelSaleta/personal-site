@@ -7,14 +7,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v3
+      # FIX 1: Upgrade setup action to v4 to correctly map modern lockfile rules
+      - uses: pnpm/action-setup@v4
         with:
-          version: 9 # Using v9 for maximum compatibility with Firebase tools
+          version: 9
 
+      # FIX 2: Bump Node to 22 & inject the explicit path block to bypass workspace probing bugs
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
+          cache-dependency-path: "./pnpm-lock.yaml"
 
       - name: Install dependencies and build
         run: |
@@ -27,7 +30,7 @@ jobs:
           VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
           VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
           VITE_FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
-          
+
       - name: Run formatting check
         run: |
           make fmt
