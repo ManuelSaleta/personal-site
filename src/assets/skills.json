@@ -1,28 +1,10 @@
 {
   "skills": [
     {
-      "name": ".NET Core",
+      "name": "C# (.NET 10/Core/Framework)",
       "color": "#512BD4",
-      "url": "https://learn.microsoft.com/dotnet/core/",
+      "url": "https://learn.microsoft.com/dotnet/csharp/",
       "icon": "dot-net"
-    },
-    {
-      "name": ".NET Framework",
-      "color": "#68217A",
-      "url": "https://learn.microsoft.com/dotnet/framework/",
-      "icon": "dot-net"
-    },
-    {
-      "name": "C#9",
-      "color": "#68217A",
-      "url": "https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-9",
-      "icon": "language-csharp"
-    },
-    {
-      "name": "C#11",
-      "color": "#68217A",
-      "url": "https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-11",
-      "icon": "language-csharp"
     },
     {
       "name": "JavaScript",
@@ -37,27 +19,15 @@
       "icon": "language-typescript"
     },
     {
-      "name": "Data structures",
-      "color": "#0A84FF",
-      "url": "https://en.wikipedia.org/wiki/Data_structure",
-      "icon": "database-outline"
-    },
-    {
-      "name": "IoC pattern / Dependency Injection",
+      "name": "IoC/Dependency Injection",
       "color": "#FF6B6B",
       "url": "https://martinfowler.com/articles/injection.html",
       "icon": "vector-polyline"
     },
     {
-      "name": "OOP design",
+      "name": "OOP",
       "color": "#6A5ACD",
       "url": "https://en.wikipedia.org/wiki/Object-oriented_programming",
-      "icon": "vector-polyline"
-    },
-    {
-      "name": "MVC",
-      "color": "#2E8B57",
-      "url": "https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller",
       "icon": "vector-polyline"
     },
     {
@@ -67,15 +37,9 @@
       "icon": "dot-net"
     },
     {
-      "name": "ASP.NET",
+      "name": "Entity Framework Core",
       "color": "#512BD4",
-      "url": "https://learn.microsoft.com/aspnet/",
-      "icon": "dot-net"
-    },
-    {
-      "name": "Entity Framework",
-      "color": "#512BD4",
-      "url": "https://learn.microsoft.com/ef/",
+      "url": "https://learn.microsoft.com/ef/core/",
       "icon": "dot-net"
     },
     {
@@ -85,7 +49,7 @@
       "icon": "dot-net"
     },
     {
-      "name": "RESTful API development",
+      "name": "RESTful & GraphQL APIs",
       "color": "#FF8C00",
       "url": "https://restfulapi.net/",
       "icon": "api"
@@ -109,19 +73,13 @@
       "icon": "database-search"
     },
     {
-      "name": "Azure Tables",
-      "color": "#0078D4",
-      "url": "https://learn.microsoft.com/azure/storage/tables/",
-      "icon": "microsoft-azure"
-    },
-    {
       "name": "MongoDB",
       "color": "#47A248",
       "url": "https://www.mongodb.com/docs/",
       "icon": "database-search"
     },
     {
-      "name": "Kusto Query",
+      "name": "Kusto (KQL)",
       "color": "#0067B8",
       "url": "https://learn.microsoft.com/azure/data-explorer/kusto/query/",
       "icon": "microsoft-azure"
@@ -139,55 +97,25 @@
       "icon": "text-search"
     },
     {
-      "name": "GraphQL",
-      "color": "#E535AB",
-      "url": "https://graphql.org/learn/",
-      "icon": "graphql"
-    },
-    {
-      "name": "Azure Functions",
+      "name": "Microsoft Azure (Functions, App Services, App Insights)",
       "color": "#0078D4",
-      "url": "https://learn.microsoft.com/azure/azure-functions/",
+      "url": "https://learn.microsoft.com/azure/",
       "icon": "microsoft-azure"
     },
     {
-      "name": "App Service",
-      "color": "#0078D4",
-      "url": "https://learn.microsoft.com/azure/app-service/",
-      "icon": "microsoft-azure"
-    },
-    {
-      "name": "Application Insights",
-      "color": "#0078D4",
-      "url": "https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview",
-      "icon": "microsoft-azure"
-    },
-    {
-      "name": "AWS Lambda",
+      "name": "AWS (Lambda, S3)",
       "color": "#FF9900",
-      "url": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html",
+      "url": "https://docs.aws.amazon.com/",
       "icon": "lambda"
     },
     {
-      "name": "Kubernetes",
+      "name": "Kubernetes (K3s)",
       "color": "#326CE5",
       "url": "https://kubernetes.io/docs/home/",
       "icon": "kubernetes"
     },
     {
-      "name": "Azure DevOps",
-      "color": "#0078D4",
-      "url": "https://learn.microsoft.com/azure/devops/",
-      "icon": "microsoft-azure"
-    },
-    {
-      "name": "AWS S3",
-      "color": "#569A31",
-      "url": "https://docs.aws.amazon.com/s3/index.html",
-      "icon": "aws"
-    },
-    {
-      "name": "Google Cloud Platform",
+      "name": "Google Cloud Platform (GCP)",
       "color": "#4285F4",
       "url": "https://cloud.google.com/docs",
       "icon": "google-cloud"
@@ -199,40 +127,10 @@
       "icon": "terraform"
     },
     {
-      "name": "Android development",
+      "name": "Native Mobile (Kotlin/Java for Android, Swift/Objective-C for iOS)",
       "color": "#3DDC84",
       "url": "https://developer.android.com/docs",
       "icon": "android"
-    },
-    {
-      "name": "iOS development",
-      "color": "#000000",
-      "url": "https://developer.apple.com/documentation",
-      "icon": "language-swift"
-    },
-    {
-      "name": "Flutter",
-      "color": "#02569B",
-      "url": "https://docs.flutter.dev/",
-      "icon": "cellphone-cog"
-    },
-    {
-      "name": "Swift",
-      "color": "#F05138",
-      "url": "https://developer.apple.com/swift/",
-      "icon": "language-swift"
-    },
-    {
-      "name": "Kotlin",
-      "color": "#0095D5",
-      "url": "https://kotlinlang.org/docs/home.html",
-      "icon": "language-kotlin"
-    },
-    {
-      "name": "Java",
-      "color": "#007396",
-      "url": "https://docs.oracle.com/en/java/",
-      "icon": "language-java"
     },
     {
       "name": "Docker",
@@ -241,39 +139,9 @@
       "icon": "docker"
     },
     {
-      "name": "React Native",
-      "color": "#61DAFB",
-      "url": "https://reactnative.dev/docs/getting-started",
-      "icon": "react"
-    },
-    {
-      "name": "Unix Terminal",
-      "color": "#2E2E2E",
-      "url": "https://www.gnu.org/software/bash/manual/",
-      "icon": "console"
-    },
-    {
-      "name": "CMD",
-      "color": "#0078D4",
-      "url": "https://learn.microsoft.com/windows-server/administration/windows-commands/cmd",
-      "icon": "console"
-    },
-    {
-      "name": "PowerShell",
-      "color": "#012456",
-      "url": "https://learn.microsoft.com/powershell/",
-      "icon": "powershell"
-    },
-    {
-      "name": "Git",
+      "name": "Git (Trunk-Based Development)",
       "color": "#F05032",
       "url": "https://git-scm.com/doc",
-      "icon": "git"
-    },
-    {
-      "name": "Trunk-Based Development",
-      "color": "#0A84FF",
-      "url": "https://trunkbaseddevelopment.com/",
       "icon": "git"
     },
     {
@@ -283,19 +151,7 @@
       "icon": "git"
     },
     {
-      "name": "DigitalOcean",
-      "color": "#0080FF",
-      "url": "https://docs.digitalocean.com/",
-      "icon": "digital-ocean"
-    },
-    {
-      "name": "Bash",
-      "color": "#4EAA25",
-      "url": "https://www.gnu.org/software/bash/manual/",
-      "icon": "bash"
-    },
-    {
-      "name": "React.js",
+      "name": "React",
       "color": "#61DAFB",
       "url": "https://reactjs.org/docs/getting-started.html",
       "icon": "react"
@@ -325,7 +181,7 @@
       "icon": "angular"
     },
     {
-      "name": "Bilingual English and Spanish",
+      "name": "Bilingual (Fluent English & Spanish)",
       "color": "#FFB400",
       "url": "https://en.wikipedia.org/wiki/Bilingualism",
       "icon": "translate"
@@ -337,37 +193,19 @@
       "icon": "jira"
     },
     {
-      "name": "Trello",
-      "color": "#0079BF",
-      "url": "https://trello.com/guide",
-      "icon": "trello"
-    },
-    {
-      "name": "Functional Programming",
-      "color": "#8A2BE2",
-      "url": "https://en.wikipedia.org/wiki/Functional_programming",
-      "icon": "code-braces"
-    },
-    {
-      "name": "Agile methodologies (Scrum, Kanban)",
+      "name": "Agile (Scrum/Kanban)",
       "color": "#00A3E0",
       "url": "https://www.scrum.org/resources/what-is-scrum",
       "icon": "cog"
     },
     {
-      "name": "CI/CD pipelines",
+      "name": "CI/CD (CircleCI, GitHub Actions)",
       "color": "#FF6A00",
       "url": "https://en.wikipedia.org/wiki/CI/CD",
       "icon": "git"
     },
     {
-      "name": "Unit testing",
-      "color": "#2D9CDB",
-      "url": "https://en.wikipedia.org/wiki/Unit_testing",
-      "icon": "test-tube"
-    },
-    {
-      "name": "TDD (Test-Driven Development)",
+      "name": "Test-Driven Development (TDD)",
       "color": "#FF5A5F",
       "url": "https://en.wikipedia.org/wiki/Test-driven_development",
       "icon": "test-tube"
@@ -379,34 +217,88 @@
       "icon": "api"
     },
     {
-      "name": "Infrastructure as Code",
-      "color": "#0F9D58",
-      "url": "https://en.wikipedia.org/wiki/Infrastructure_as_code",
-      "icon": "cog"
-    },
-    {
-      "name": "Liquid Template",
-      "color": "#00AEEF",
-      "url": "https://shopify.github.io/liquid/",
-      "icon": "email-edit"
-    },
-    {
-      "name": "DRY",
-      "color": "#6C757D",
-      "url": "https://en.wikipedia.org/wiki/Don%27t_repeat_yourself",
-      "icon": "web"
-    },
-    {
       "name": "Linear",
       "color": "#111827",
       "url": "https://linear.app/docs",
       "icon": "web"
     },
     {
-      "name": "Notion",
-      "color": "#000000",
-      "url": "https://www.notion.so/help",
+      "name": "Packer",
+      "color": "#7B42BC",
+      "url": "https://developer.hashicorp.com/packer/docs",
+      "icon": "terraform"
+    },
+    {
+      "name": "Bash / Shell Scripting",
+      "color": "#4EAA25",
+      "url": "https://www.gnu.org/software/bash/manual/",
+      "icon": "bash"
+    },
+    {
+      "name": "Python",
+      "color": "#3776AB",
+      "url": "https://docs.python.org/3/",
+      "icon": "language-python"
+    },
+    {
+      "name": "Multi-Tenant Architecture",
+      "color": "#6A5ACD",
+      "url": "https://en.wikipedia.org/wiki/Multitenancy",
+      "icon": "vector-polyline"
+    },
+    {
+      "name": "Cloudflare Tunnels",
+      "color": "#F38020",
+      "url": "https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/",
       "icon": "web"
+    },
+    {
+      "name": "Tailscale",
+      "color": "#000000",
+      "url": "https://tailscale.com/kb/",
+      "icon": "vector-polyline"
+    },
+    {
+      "name": "Cloud Firestore",
+      "color": "#FFCA28",
+      "url": "https://firebase.google.com/docs/firestore",
+      "icon": "database-search"
+    },
+    {
+      "name": "Tailwind CSS",
+      "color": "#06B6D4",
+      "url": "https://tailwindcss.com/docs",
+      "icon": "web"
+    },
+    {
+      "name": "PII & GDPR Compliance Pipelines",
+      "color": "#0F9D58",
+      "url": "https://en.wikipedia.org/wiki/Personally_identifiable_information",
+      "icon": "cog"
+    },
+    {
+      "name": "Power Automate & SharePoint Integration",
+      "color": "#0078D4",
+      "url": "https://learn.microsoft.com/power-automate/",
+      "icon": "microsoft-azure"
+    },
+    {
+      "name": "Enterprise PMS Integrations (OperaPMS, ShijiPMS, HotSOS)",
+      "color": "#FF8C00",
+      "url": "https://www.google.com/search?q=hospitality+pms+api+integration",
+      "icon": "api"
+    },
+    {
+      "name": "LLM Provider Abstractions (OpenAI-compatible)",
+      "color": "#00A244",
+      "url": "https://www.google.com/search?q=openai+compatible+api+gateway",
+      "icon": "api"
+    },
+    {
+      "name": "Bare-Metal Kubernetes (K3s)",
+      "color": "#326CE5",
+      "url": "https://docs.k3s.io/",
+      "icon": "kubernetes"
     }
   ]
 }

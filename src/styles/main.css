@@ -1,32 +1,47 @@
 @import "./base.css";
 @import "tailwindcss";
 
-body {
-  font-family: "Roboto", sans-serif;
-}
-
+/* --------------------------------------------------------------------------
+   Structural Application Wrapper
+   -------------------------------------------------------------------------- */
 #app {
   width: 90%;
-  /* max-width: 2048px; */
+  max-width: 1440px; /* Protects readability on ultra-wide screens */
   margin: 0 auto;
   padding: 2rem;
-  font-weight: normal;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Elements & Hover Enhancements
+   -------------------------------------------------------------------------- */
+a {
+  color: var(--color-text); /* Fallback to the pristine base theme text color */
+  text-decoration: none;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem; /* Added slight padding so the hover highlight doesn't choke the characters */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease; /* Kept smooth but slightly snappier for immediate interactive feedback */
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    /* Hard contrast shift: Lock text to deep primary indigo, backdropped by a soft tint */
+    color: var(--vt-c-indigo);
+    background-color: rgba(44, 62, 80, 0.08);
   }
 }
 
-/* Center content */
-@media (min-width: 100%) {
-  body {
-    display: flex;
-    place-items: center;
+@media (prefers-color-scheme: dark) {
+  a {
+    color: var(--color-text);
   }
 
-  #app {
-    display: flex;
+  @media (hover: hover) {
+    a:hover {
+      /* Dark mode contrast shift: Lock text to pure light-gray/white against a soft white glow */
+      color: var(--vt-c-text-dark-1);
+      background-color: rgba(255, 255, 255, 0.12);
+    }
   }
 }

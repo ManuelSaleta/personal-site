@@ -2,10 +2,10 @@
   <div class="site-base">
     <!-- <SkillsList></SkillsList> -->
     <AboutMe></AboutMe>
-    <Heading text="Relevant Skills" size="h2"></Heading>
+    <Heading text="RELEVANT SKILLS" size="h2"></Heading>
     <SkillsList></SkillsList>
 
-    <Heading text="Professional Experience" size="h2"></Heading>
+    <Heading text="PROFESSIONAL EXPERIENCE" size="h2"></Heading>
     <ResumeBase> </ResumeBase>
   </div>
 </template>

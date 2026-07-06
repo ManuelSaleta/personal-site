@@ -5,21 +5,31 @@
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
 
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+  --vt-c-black: #0d0e11; /* DESIGN TWEAK: Slightly deeper, richer canvas tone */
+  --vt-c-black-soft: #18191e; /* Distinct, modern elevation step */
+  --vt-c-black-mute: #22242b;
 
   --vt-c-indigo: #2c3e50;
 
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+  --vt-c-divider-light-1: rgba(60, 60, 60, 0.25);
+  --vt-c-divider-light-2: rgba(60, 60, 60, 0.08);
+  --vt-c-divider-dark-1: rgba(
+    255,
+    255,
+    255,
+    0.14
+  ); /* DESIGN TWEAK: Cleaner, alpha-based */
+  --vt-c-divider-dark-2: rgba(
+    255,
+    255,
+    255,
+    0.06
+  ); /* dark borders that scale better */
 
   --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  --vt-c-text-light-2: rgba(44, 62, 80, 0.7);
+  --vt-c-text-dark-1: #f3f4f6; /* DESIGN TWEAK: Soft off-white for crisp, */
+  --vt-c-text-dark-2: rgba(243, 244, 246, 0.65); /* glare-free reading text */
 }
 
 /* semantic color variables for this project */
@@ -32,7 +42,9 @@
   --color-border-hover: var(--vt-c-divider-light-1);
 
   --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
+  --color-text: var(
+    --vt-c-text-light-2
+  ); /* Use secondary text for standard body prose */
 
   --section-gap: 160px;
 }
@@ -56,12 +68,26 @@ body {
   color: var(--color-text);
   background: var(--color-background);
   transition:
-    color 0.5s,
-    background-color 0.5s;
-  line-height: 1.6;
-  font-family: "Roboto", sans-serif;
+    color 0.3s ease,
+    /* DESIGN TWEAK: Adjusted timing slightly for a snappy, */ background-color
+      0.3s ease; /* professional UI transition without feeling sluggish */
+  line-height: 1.7; /* DESIGN TWEAK: 1.7 length offers pristine text legibility */
+  font-family:
+    "Inter", "Roboto", system-ui, sans-serif; /* Fallbacks with modern geometric text */
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* EXPERT ADDITION: Handle heading contrast cleanly */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em; /* Gives structural titles a tightly tailored, premium look */
 }

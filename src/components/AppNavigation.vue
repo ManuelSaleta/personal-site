@@ -1,8 +1,8 @@
 <template>
   <v-app-bar
-    color="#6d8c94"
+    color="#000000"
     scroll-behavior="fade-image"
-    image="/src/assets/low_poly_monochrome.png"
+    image="/src/assets/banner.png"
     loading="lazy"
   >
     <v-app-bar-nav-icon @click="drawer = !drawer" />
