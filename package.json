@@ -14,15 +14,7 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix --cache --ignore-pattern .firebase",
     "format": "prettier --write --experimental-cli src/"
-  },
-  "pnpm": {
-    "allowBuilds": {
-      "@firebase/util": true,
-      "@parcel/watcher": false,
-      "esbuild": true,
-      "protobufjs": false
-    }
-  },
+  }, 
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@tailwindcss/vite": "^4.2.0",
