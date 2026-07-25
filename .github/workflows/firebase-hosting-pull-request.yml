@@ -1,5 +1,6 @@
 name: Deploy to Firebase Hosting on PR
 "on": pull_request
+
 jobs:
   build_and_preview:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
@@ -7,12 +8,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # FIX 1: Upgrade setup action to v4 to correctly map modern lockfile rules
+      # Bump pnpm to v11 to match local dev setup
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 11
 
-      # FIX 2: Bump Node to 22 & inject the explicit path block to bypass workspace probing bugs
+      # Node 22 runner + pnpm cache lookup
       - uses: actions/setup-node@v4
         with:
           node-version: 22

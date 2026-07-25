@@ -6,18 +6,19 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - main
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # FIX 1: Upgrade setup action to v4 to correctly map modern lockfile rules
+      # Bump pnpm to v11 to match local environment
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 11
 
-      # FIX 2: Bump Node to 22 & inject the explicit path block to bypass workspace probing bugs
+      # Target Node 22 for runner stability & setup pnpm caching
       - uses: actions/setup-node@v4
         with:
           node-version: 22
