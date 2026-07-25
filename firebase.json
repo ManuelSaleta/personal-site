@@ -1,11 +1,7 @@
 {
   "hosting": {
     "public": "dist",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
@@ -34,16 +30,22 @@
     ]
   },
   "emulators": {
+    "singleProjectMode": true,
     "hosting": {
-      "port": 60003
+      "port": 5005
     },
     "firestore": {
-      "port": 60000,
-      "host": "127.0.0.1"
+      "port": 8080
     },
     "ui": {
       "enabled": true,
-      "port": 60009
+      "port": 4005
+    },
+    "hub": {
+      "port": 4405
+    },
+    "logging": {
+      "port": 4505
     }
   }
 }
