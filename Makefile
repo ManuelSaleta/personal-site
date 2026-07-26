@@ -2,17 +2,24 @@
 SHELL := /bin/bash
 
 # Phony targets
-.PHONY: help dev build preview lint fmt test clean set-node-version local-db 
+.PHONY: help dev build preview lint fmt test clean set-node-version local-db
 
 # Help: list available targets
 help: ## Show available commands
     @grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
-# Start dev server
-dev: set-node-version local-db  ## Set the correct node version & Start Vite dev server
+# Start dev server with sequential emulator health check
+dev: set-node-version ## Set node version, boot local DB, and start Vite dev server
+	@echo "Starting Firebase emulators..."
+	@firebase emulators:start & \
+	EMU_PID=$$!; \
+	trap 'kill $$EMU_PID 2>/dev/null' EXIT INT TERM; \
+	echo "Waiting for Firebase Emulators to respond..."; \
+	until curl -s http://127.0.0.1:8080 >/dev/null; do sleep 0.5; done; \
+	echo "Emulators online! Booting Vite..."; \
 	pnpm run dev
 
-	
+
 
 # Build production bundle
 build: ## Build production bundle
@@ -44,9 +51,6 @@ set-node-version: ## Uses the required node version for this project
 	[ -s "$$NVM_DIR/nvm.sh" ] && . "$$NVM_DIR/nvm.sh"; \
 	nvm use --lts
 
-# Starts the emulator. TODO: setup a document seed. 
+# Starts the emulator. TODO: setup a document seed.
 local-db:
 	firebase emulators:start&
-
-	
-
