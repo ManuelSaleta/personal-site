@@ -13,7 +13,13 @@
     </div>
 
     <hr />
-    <div class="flex justify-end">
+    <div class="flex flex-direction: row-auto justify-between align-baseline">
+      <VideoPreviewWrapper
+        title="Click me"
+        thumbnailUrl="https://img.youtube.com/vi/dj-GyXD9ZSc/maxresdefault.jpg"
+      >
+        <IFrameContainer videoId="dj-GyXD9ZSc" />
+      </VideoPreviewWrapper>
       <ResumeDownloadBtn />
     </div>
   </div>
