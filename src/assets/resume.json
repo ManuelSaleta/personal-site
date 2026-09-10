@@ -15,6 +15,18 @@
     },
     {
       "id": 2,
+      "heading": "STAFF SOFTWARE ENGINEER",
+      "sub_heading": "SEABOARD MARINE | 08/2026 - PRESENT",
+      "contributions": [
+        "Spearheaded the end-to-end delivery of an enterprise internal procurement platform built on a modular-monolith architecture, streamlining cross-department requisitions while maintaining high transactional integrity.",
+        "Owned all technical and architectural decisions from initial domain modeling through production deployment, encompassing domain-driven design, high-performance database access with Dapper ORM, and ASP.NET Core Minimal API specifications.",
+        "Engineered a custom, reusable UI component library from scratch leveraging Angular and Angular Signals, establishing reactive frontend patterns and accelerating feature delivery across internal procurement workflows.",
+        "Architected fine-grained Role-Based Access Control (RBAC) security frameworks and governance policies to enforce strict authorization boundaries across sensitive financial approval tiers.",
+        "Provisioned scalable cloud infrastructure and fully automated CI/CD deployment pipelines, ensuring environment parity, automated testing, and zero-downtime releases."
+      ]
+    },
+    {
+      "id": 3,
       "heading": "SENIOR SOFTWARE ENGINEER",
       "sub_heading": "SION CENTRAL | 10/2024-05/2026",
       "contributions": [
@@ -26,7 +38,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "heading": "LEAD SOFTWARE ENGINEER",
       "sub_heading": "BITSTOP | 06/2021-2024",
       "contributions": [
@@ -39,7 +51,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "heading": "SOFTWARE ENGINEER",
       "sub_heading": "AMADEUS HOSPITALITY | 02/2017 - 06/2021",
       "contributions": [
@@ -50,7 +62,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": 6,
       "heading": "SOFTWARE ENGINEER",
       "sub_heading": "ASSURANT IT SOLUTIONS | 10/2016-01/2017",
       "contributions": [
@@ -59,7 +71,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": 7,
       "heading": "PROGRAMMING TUTOR III",
       "sub_heading": "FIU STARS TUTORING | 02/2015- 09/2016",
       "contributions": [

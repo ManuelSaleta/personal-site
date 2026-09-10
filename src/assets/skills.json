@@ -43,6 +43,18 @@
       "icon": "dot-net"
     },
     {
+      "name": "Minimal API",
+      "color": "#512BD4",
+      "url": "https://learn.microsoft.com/aspnet/core/fundamentals/minimal-apis",
+      "icon": "dot-net"
+    },
+    {
+      "name": "Dapper ORM",
+      "color": "#512BD4",
+      "url": "https://www.learndapper.com/",
+      "icon": "dot-net"
+    },
+    {
       "name": "LINQ",
       "color": "#68217A",
       "url": "https://learn.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/",
@@ -178,6 +190,12 @@
       "name": "Angular",
       "color": "#DD0031",
       "url": "https://angular.io/docs",
+      "icon": "angular"
+    },
+    {
+      "name": "Angular Signals",
+      "color": "#DD0031",
+      "url": "https://angular.dev/guide/signals",
       "icon": "angular"
     },
     {
