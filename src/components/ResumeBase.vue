@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch, nextTick, onMounted, onUnmounted } from "vue";
 import ResumeSection from "./ResumeSection.vue";
 import resumeData from "@/assets/resume.json";
 import ResumeDownloadBtn from "./ResumeDownloadBtn.vue";
@@ -24,6 +24,113 @@ function parsePeriod(subHeading: string): string {
   const parts = (subHeading || "").split("|").map((s) => s.trim());
   return parts[1] || "";
 }
+
+// Edge glow indicators state & detection
+const scrollAreaRef = ref<HTMLElement | null>(null);
+const isAtLeft = ref(false);
+const isAtRight = ref(false);
+const hitLeft = ref(false);
+const hitRight = ref(false);
+let userHasScrolled = false;
+let leftHitTimer: ReturnType<typeof setTimeout> | null = null;
+let rightHitTimer: ReturnType<typeof setTimeout> | null = null;
+let prevScrollLeft = 0;
+
+function triggerHit(direction: "left" | "right") {
+  if (direction === "left") {
+    hitLeft.value = true;
+    if (leftHitTimer) clearTimeout(leftHitTimer);
+    leftHitTimer = setTimeout(() => {
+      hitLeft.value = false;
+    }, 650);
+  } else {
+    hitRight.value = true;
+    if (rightHitTimer) clearTimeout(rightHitTimer);
+    rightHitTimer = setTimeout(() => {
+      hitRight.value = false;
+    }, 650);
+  }
+}
+
+function checkScrollBounds() {
+  const el = scrollAreaRef.value;
+  if (!el) return;
+
+  const { scrollLeft, scrollWidth, clientWidth } = el;
+  const maxScroll = Math.max(0, scrollWidth - clientWidth);
+  const threshold = 16;
+
+  const atLeft = scrollLeft <= threshold;
+  const atRight = scrollLeft >= maxScroll - threshold;
+
+  if (userHasScrolled) {
+    if (atLeft && !isAtLeft.value && scrollLeft <= prevScrollLeft) {
+      triggerHit("left");
+    }
+    if (atRight && !isAtRight.value && scrollLeft >= prevScrollLeft) {
+      triggerHit("right");
+    }
+  }
+
+  isAtLeft.value = atLeft && userHasScrolled;
+  isAtRight.value = atRight && userHasScrolled;
+  prevScrollLeft = scrollLeft;
+}
+
+function handleScroll() {
+  userHasScrolled = true;
+  checkScrollBounds();
+}
+
+function handleWheel(event: WheelEvent) {
+  const el = scrollAreaRef.value;
+  if (!el) return;
+
+  const { scrollLeft, scrollWidth, clientWidth } = el;
+  const maxScroll = Math.max(0, scrollWidth - clientWidth);
+
+  // If scrolling horizontally and at left end attempting to scroll further left
+  if (scrollLeft <= 16 && (event.deltaX < -4 || (event.shiftKey && event.deltaY < -4))) {
+    userHasScrolled = true;
+    isAtLeft.value = true;
+    triggerHit("left");
+  }
+  // If scrolling horizontally and at right end attempting to scroll further right
+  else if (
+    scrollLeft >= maxScroll - 16 &&
+    (event.deltaX > 4 || (event.shiftKey && event.deltaY > 4))
+  ) {
+    userHasScrolled = true;
+    isAtRight.value = true;
+    triggerHit("right");
+  }
+}
+
+watch(viewMode, (newVal) => {
+  if (newVal === "timeline") {
+    nextTick(() => {
+      userHasScrolled = false;
+      isAtLeft.value = false;
+      isAtRight.value = false;
+    });
+  }
+});
+
+function handleResize() {
+  if (viewMode.value === "timeline") {
+    checkScrollBounds();
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("resize", handleResize, { passive: true });
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", handleResize);
+  if (leftHitTimer) clearTimeout(leftHitTimer);
+  if (rightHitTimer) clearTimeout(rightHitTimer);
+});
 </script>
 
 <template>
@@ -38,12 +145,8 @@ function parsePeriod(subHeading: string): string {
         density="compact"
         rounded="lg"
       >
-        <v-btn value="timeline" prepend-icon="mdi-timeline-outline">
-          Timeline View
-        </v-btn>
-        <v-btn value="cards" prepend-icon="mdi-view-grid-outline">
-          Cards Grid
-        </v-btn>
+        <v-btn value="timeline" prepend-icon="mdi-timeline-outline"> Timeline View </v-btn>
+        <v-btn value="cards" prepend-icon="mdi-view-grid-outline"> Cards Grid </v-btn>
       </v-btn-toggle>
     </div>
 
@@ -51,53 +154,72 @@ function parsePeriod(subHeading: string): string {
     <div v-if="viewMode === 'timeline'" class="horizontal-timeline-wrapper">
       <div class="timeline-hint no-print">
         <v-icon icon="mdi-gesture-swipe-horizontal" size="18" color="primary" />
-        <span>Scroll horizontally to explore career journey (Most Recent on left ➔ Previous roles)</span>
+        <span
+          >Scroll horizontally to explore career journey (Most Recent on left ➔ Previous
+          roles)</span
+        >
       </div>
 
-      <div class="horizontal-scroll-area">
-        <v-timeline
-          direction="horizontal"
-          align="center"
-          truncate-line="both"
-          class="career-timeline-horizontal"
+      <div class="timeline-scroll-container">
+        <!-- Soft Glow Edge Indicators -->
+        <div
+          class="edge-glow edge-glow-left"
+          :class="{ 'is-active': isAtLeft, 'is-hit': hitLeft }"
+          aria-hidden="true"
+        />
+        <div
+          class="edge-glow edge-glow-right"
+          :class="{ 'is-active': isAtRight, 'is-hit': hitRight }"
+          aria-hidden="true"
+        />
+
+        <div
+          ref="scrollAreaRef"
+          class="horizontal-scroll-area"
+          @scroll.passive="handleScroll"
+          @wheel.passive="handleWheel"
         >
-          <v-timeline-item
-            v-for="section in resume.experience"
-            :key="section.id"
-            dot-color="primary"
-            size="small"
-            fill-dot
-            class="timeline-horizontal-item"
+          <v-timeline
+            direction="horizontal"
+            align="center"
+            truncate-line="both"
+            class="career-timeline-horizontal"
           >
-            <template #icon>
-              <v-icon icon="mdi-briefcase-outline" size="14" color="white" />
-            </template>
-
-            <!-- Opposite slot shows date badge above/below the horizontal line -->
-            <template
-              v-if="parsePeriod(section.sub_heading)"
-              #opposite
+            <v-timeline-item
+              v-for="section in resume.experience"
+              :key="section.id"
+              dot-color="primary"
+              size="small"
+              fill-dot
+              class="timeline-horizontal-item"
             >
-              <div class="timeline-opposite-pill">
-                <v-chip
-                  size="small"
-                  color="primary"
-                  variant="tonal"
-                  class="opposite-chip"
-                  prepend-icon="mdi-calendar-range"
-                >
-                  {{ parsePeriod(section.sub_heading) }}
-                </v-chip>
-              </div>
-            </template>
+              <template #icon>
+                <v-icon icon="mdi-briefcase-outline" size="14" color="white" />
+              </template>
 
-            <ResumeSection
-              :heading="section.heading"
-              :sub-heading="section.sub_heading"
-              :contributions="section.contributions"
-            />
-          </v-timeline-item>
-        </v-timeline>
+              <!-- Opposite slot shows date badge above/below the horizontal line -->
+              <template v-if="parsePeriod(section.sub_heading)" #opposite>
+                <div class="timeline-opposite-pill">
+                  <v-chip
+                    size="small"
+                    color="primary"
+                    variant="tonal"
+                    class="opposite-chip"
+                    prepend-icon="mdi-calendar-range"
+                  >
+                    {{ parsePeriod(section.sub_heading) }}
+                  </v-chip>
+                </div>
+              </template>
+
+              <ResumeSection
+                :heading="section.heading"
+                :sub-heading="section.sub_heading"
+                :contributions="section.contributions"
+              />
+            </v-timeline-item>
+          </v-timeline>
+        </div>
       </div>
     </div>
 
@@ -155,6 +277,96 @@ function parsePeriod(subHeading: string): string {
 /* Horizontal Timeline styles */
 .horizontal-timeline-wrapper {
   width: 100%;
+}
+
+.timeline-scroll-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Soft Glow Edge Indicators (50% narrower & localized height) */
+.edge-glow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 260px;
+  max-height: 55%;
+  width: 36px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition:
+    opacity var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.edge-glow-left {
+  left: 0;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+  background: radial-gradient(
+    ellipse at 0% 50%,
+    rgba(var(--v-theme-primary), 0.55) 0%,
+    rgba(var(--v-theme-primary), 0.2) 50%,
+    transparent 85%
+  );
+  box-shadow: inset 10px 0 16px -4px rgba(var(--v-theme-primary), 0.6);
+}
+
+.edge-glow-right {
+  right: 0;
+  border-radius: var(--radius-pill) 0 0 var(--radius-pill);
+  background: radial-gradient(
+    ellipse at 100% 50%,
+    rgba(var(--v-theme-primary), 0.55) 0%,
+    rgba(var(--v-theme-primary), 0.2) 50%,
+    transparent 85%
+  );
+  box-shadow: inset -10px 0 16px -4px rgba(var(--v-theme-primary), 0.6);
+}
+
+.edge-glow::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  width: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  opacity: 0.85;
+  filter: blur(1px);
+  box-shadow: 0 0 10px 2px rgba(var(--v-theme-primary), 0.85);
+}
+
+.edge-glow-left::before {
+  left: 2px;
+}
+
+.edge-glow-right::before {
+  right: 2px;
+}
+
+.edge-glow.is-active {
+  opacity: 0.9;
+}
+
+.edge-glow.is-hit {
+  opacity: 1;
+  animation: edge-glow-pulse 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes edge-glow-pulse {
+  0% {
+    opacity: 0.3;
+    transform: translateY(-50%) scaleX(0.7);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1.3);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateY(-50%) scaleX(1);
+  }
 }
 
 .horizontal-scroll-area {
@@ -259,6 +471,10 @@ function parsePeriod(subHeading: string): string {
 @media print {
   .horizontal-scroll-area {
     overflow: visible !important;
+  }
+
+  .edge-glow {
+    display: none !important;
   }
 }
 </style>
