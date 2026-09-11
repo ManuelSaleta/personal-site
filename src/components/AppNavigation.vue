@@ -32,20 +32,20 @@ const links = [
       aria-label="Toggle navigation menu"
     />
 
-    <v-avatar size="36" color="primary" variant="tonal" class="ml-2 mr-3">
+    <v-avatar size="36" color="primary" variant="tonal" class="brand-avatar">
       <v-icon icon="mdi-code-braces" size="20" />
     </v-avatar>
 
     <v-app-bar-title class="brand-title">
       <span class="brand-name">Manuel Saleta</span>
-      <span class="brand-separator mx-2 opacity-50">|</span>
-      <span class="brand-tagline text-caption opacity-80">Software Engineering</span>
+      <span class="brand-separator">|</span>
+      <span class="brand-tagline">Software Engineering</span>
     </v-app-bar-title>
 
     <v-spacer />
 
     <!-- Action Buttons -->
-    <div class="d-flex align-center gap-1 mr-2">
+    <div class="nav-actions">
       <!-- Quick Social Icons -->
       <v-btn
         icon="mdi-github"
@@ -83,7 +83,7 @@ const links = [
         variant="tonal"
         size="small"
         prepend-icon="mdi-download"
-        class="ml-2 d-none d-sm-inline-flex font-weight-medium"
+        class="nav-resume-btn"
       >
         Resume PDF
       </v-btn>
@@ -115,6 +115,11 @@ const links = [
   opacity: 0.15;
 }
 
+.brand-avatar {
+  margin-left: var(--space-2);
+  margin-right: var(--space-3);
+}
+
 .brand-title {
   font-size: 1.05rem;
   font-weight: 700;
@@ -125,7 +130,31 @@ const links = [
   color: var(--color-text-main);
 }
 
+.brand-separator {
+  margin: 0 var(--space-2);
+  opacity: 0.5;
+}
+
 .brand-tagline {
+  font-size: 0.75rem;
   font-weight: 500;
+  opacity: 0.8;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-right: var(--space-2);
+}
+
+.nav-resume-btn {
+  margin-left: var(--space-2);
+  font-weight: 500;
+  display: none;
+
+  @media (min-width: 600px) {
+    display: inline-flex;
+  }
 }
 </style>

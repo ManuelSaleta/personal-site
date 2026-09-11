@@ -17,10 +17,8 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "@tailwindcss/vite": "^4.3.3",
     "firebase": "^12.19.0",
     "pinia": "^3.0.4",
-    "tailwindcss": "^4.3.3",
     "unplugin-auto-import": "^21.1.0",
     "unplugin-fonts": "^1.4.0",
     "unplugin-vue-router": "^0.19.2",

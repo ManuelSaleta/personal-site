@@ -10,7 +10,7 @@ import resumePdf from "@/assets/manuel_saleta_resume.pdf";
     color="primary"
     variant="tonal"
     prepend-icon="mdi-download"
-    class="download-btn font-weight-medium"
+    class="download-btn"
     rounded="lg"
   >
     Download Full Resume (.PDF)
@@ -19,6 +19,7 @@ import resumePdf from "@/assets/manuel_saleta_resume.pdf";
 
 <style scoped>
 .download-btn {
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 </style>

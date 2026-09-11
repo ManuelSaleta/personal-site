@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>This will become an About page</h1>
+  <div class="about-page">
+    <h1 class="page-title">About</h1>
   </div>
 </template>
 
@@ -9,7 +9,16 @@
 </script>
 
 <style scoped>
-.test-page {
-  padding: 20px;
+.about-page {
+  padding: var(--space-8) var(--space-4);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
 }
 </style>

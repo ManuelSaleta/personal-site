@@ -26,7 +26,7 @@ const skillsList = ref<Skill[]>(skills);
         rounded
         outlined
         variant="elevated"
-        class="skill-item font-weight-medium"
+        class="skill-item"
       />
     </div>
   </v-card>
@@ -45,6 +45,7 @@ const skillsList = ref<Skill[]>(skills);
 }
 
 .skill-item {
+  font-weight: 500;
   transition: transform var(--transition-fast);
 }
 

@@ -8,7 +8,7 @@
       :prepend-icon="link.icon"
       color="primary"
       variant="tonal"
-      class="contact-pill font-weight-medium"
+      class="contact-pill"
       rounded="pill"
       size="small"
     >
@@ -68,6 +68,7 @@ const contactLinks = computed(() => socialLinks.filter((l) => l.name !== ""));
 }
 
 .contact-pill {
+  font-weight: 500;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   text-decoration: none !important;
 }

@@ -1,17 +1,32 @@
 <template>
-  <div class="container mx-auto px-4 py-8 flex flex-col items-center">
-    <h1 class="text-3xl font-bold mb-6">Slice of Life Poems</h1>
-    <div v-if="loading" class="text-center text-gray-500">Loading poems...</div>
-    <div v-else class="space-y-8">
-      <!-- {{  ENV }} -->
-      <div v-for="poem in poems" :key="poem.number" class="mb-6 w-2xl">
-        <!-- <h2 class="text-xl font-semibold mb-2">{{ poem.title }}</h2>
-        <pre class="whitespace-pre-wrap text-gray-700">{{ poem.body }}</pre> -->
-        <v-card>
-          <v-card-title>{{ poem.number }}. {{ poem.title }}</v-card-title>
-          <v-card-text>{{ poem.body }}</v-card-text>
-        </v-card>
-      </div>
+  <div class="poems-page-container">
+    <header class="poems-header">
+      <h1 class="poems-title">Slice of Life Poems</h1>
+      <p class="poems-subtitle">Reflections, verses, and observations</p>
+    </header>
+
+    <div v-if="loading" class="loading-state">
+      <v-progress-circular indeterminate color="primary" size="32" />
+      <span class="loading-text">Loading poems...</span>
+    </div>
+
+    <div v-else class="poems-list">
+      <v-card
+        v-for="poem in poems"
+        :key="poem.number"
+        class="m3-card poem-card"
+        variant="outlined"
+        rounded="xl"
+      >
+        <v-card-title class="poem-title">
+          <span class="poem-number">#{{ poem.number }}</span>
+          <span>{{ poem.title }}</span>
+        </v-card-title>
+        <v-divider class="poem-divider" />
+        <v-card-text class="poem-body">
+          <pre class="poem-pre">{{ poem.body }}</pre>
+        </v-card-text>
+      </v-card>
     </div>
   </div>
 </template>
@@ -52,3 +67,101 @@ onMounted(async () => {
   }
 });
 </script>
+
+<style scoped>
+.poems-page-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.poems-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.poems-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.poems-subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-top: var(--space-1);
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-8) 0;
+  color: var(--color-text-muted);
+}
+
+.loading-text {
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.poems-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.poem-card {
+  width: 100%;
+}
+
+.poem-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--v-theme-primary), 0.4) !important;
+  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.12);
+}
+
+.poem-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding: var(--space-4) var(--space-5) var(--space-3);
+}
+
+.poem-number {
+  color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.poem-divider {
+  margin: 0 var(--space-5);
+  opacity: 0.15;
+}
+
+.poem-body {
+  padding: var(--space-4) var(--space-5);
+}
+
+.poem-pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+  line-height: 1.75;
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  margin: 0;
+}
+</style>

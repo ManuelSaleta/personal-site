@@ -53,7 +53,7 @@ const displayedTechs = computed(() => {
     <!-- Header Grouping: Icon, Role, Company, and Period Badge -->
     <v-card-item class="header-item">
       <template #prepend>
-        <v-avatar color="primary" variant="tonal" size="42" class="mr-3">
+        <v-avatar color="primary" variant="tonal" size="42" class="role-avatar">
           <v-icon icon="mdi-briefcase-outline" size="22" />
         </v-avatar>
       </template>
@@ -73,7 +73,7 @@ const displayedTechs = computed(() => {
           size="small"
           color="primary"
           variant="tonal"
-          class="period-badge font-weight-medium"
+          class="period-badge"
         >
           <v-icon icon="mdi-calendar-range" start size="14" />
           {{ parsedMeta.period }}
@@ -84,7 +84,7 @@ const displayedTechs = computed(() => {
     <v-divider class="divider-subtle" />
 
     <!-- Content Grouping: Bullet points -->
-    <v-card-text class="pt-3 pb-4">
+    <v-card-text class="card-content">
       <ul class="resume-bullet-list">
         <li v-for="(item, idx) in contributions" :key="idx">
           {{ item }}
@@ -92,7 +92,7 @@ const displayedTechs = computed(() => {
       </ul>
 
       <!-- Contextual Technologies Grouping -->
-      <div v-if="displayedTechs.length > 0" class="tech-stack-group mt-4 pt-2">
+      <div v-if="displayedTechs.length > 0" class="tech-stack-group">
         <span class="tech-stack-label">Key Stack:</span>
         <div class="tech-chips">
           <v-chip
@@ -101,7 +101,7 @@ const displayedTechs = computed(() => {
             size="x-small"
             variant="tonal"
             color="secondary"
-            class="font-weight-medium"
+            class="tech-chip"
           >
             {{ tech }}
           </v-chip>
@@ -127,6 +127,10 @@ const displayedTechs = computed(() => {
   padding-bottom: var(--space-2);
 }
 
+.role-avatar {
+  margin-right: var(--space-3);
+}
+
 .header-container {
   display: flex;
   flex-wrap: wrap;
@@ -150,6 +154,7 @@ const displayedTechs = computed(() => {
 }
 
 .period-badge {
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
@@ -158,11 +163,18 @@ const displayedTechs = computed(() => {
   opacity: 0.15;
 }
 
+.card-content {
+  padding-top: var(--space-3);
+  padding-bottom: var(--space-4);
+}
+
 .tech-stack-group {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding-top: var(--space-2);
   border-top: 1px dashed var(--color-border);
 }
 
@@ -178,6 +190,10 @@ const displayedTechs = computed(() => {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-1);
+}
+
+.tech-chip {
+  font-weight: 500;
 }
 
 @media print {
