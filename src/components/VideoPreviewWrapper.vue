@@ -80,9 +80,7 @@ onUnmounted(() => {
             <path d="M8 5v14l11-7z" />
           </svg>
         </span>
-        <span class="truncate tracking-wide shadow-black drop-shadow-xs">{{
-          props.label
-        }}</span>
+        <span class="truncate tracking-wide shadow-black drop-shadow-xs">{{ props.label }}</span>
       </div>
     </button>
 

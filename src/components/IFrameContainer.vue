@@ -27,9 +27,7 @@ const cleanVideoId = computed(() => {
   const idOrUrl = props.videoId.trim();
 
   // Handles /shorts/ID or v=ID or raw ID
-  const match = idOrUrl.match(
-    /(?:shorts\/|v=|\/embed\/|youtu\.be\/|\/v\/|^)([a-zA-Z0-9_-]{11})/,
-  );
+  const match = idOrUrl.match(/(?:shorts\/|v=|\/embed\/|youtu\.be\/|\/v\/|^)([a-zA-Z0-9_-]{11})/);
   return match ? match[1] : idOrUrl;
 });
 

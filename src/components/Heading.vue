@@ -1,11 +1,7 @@
 <template>
   <component
     :is="headingTag"
-    :class="[
-      'heading',
-      { 'heading--underline': underline },
-      `heading--${size}`,
-    ]"
+    :class="['heading', { 'heading--underline': underline }, `heading--${size}`]"
   >
     {{ text }}
   </component>
@@ -22,8 +18,7 @@ export default {
     size: {
       type: String,
       default: "h1",
-      validator: (value: string) =>
-        ["h1", "h2", "h3", "h4", "h5", "h6"].includes(value),
+      validator: (value: string) => ["h1", "h2", "h3", "h4", "h5", "h6"].includes(value),
     },
     underline: {
       type: Boolean,
