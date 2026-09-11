@@ -13,7 +13,7 @@ import resumePdf from "@/assets/manuel_saleta_resume.pdf";
     class="download-btn"
     rounded="lg"
   >
-    Download Full Resume (.PDF)
+    Download Resume PDF
   </v-btn>
 </template>
 

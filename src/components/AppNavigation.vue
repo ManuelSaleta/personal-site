@@ -39,7 +39,7 @@ const links = [
     <v-app-bar-title class="brand-title">
       <span class="brand-name">Manuel Saleta</span>
       <span class="brand-separator">|</span>
-      <span class="brand-tagline">Software Engineering</span>
+      <span class="brand-tagline">Let's build something great together</span>
     </v-app-bar-title>
 
     <v-spacer />
