@@ -1,43 +1,36 @@
+<script setup lang="ts">
+import { computed } from "vue";
+
+interface Props {
+  text: string;
+  size?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  underline?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  size: "h1",
+  underline: false,
+});
+
+const headingTag = computed(() => props.size.toLowerCase());
+</script>
+
 <template>
   <component
     :is="headingTag"
-    :class="['heading', { 'heading--underline': underline }, `heading--${size}`]"
+    :class="['heading', { 'heading--underline': props.underline }, `heading--${props.size}`]"
   >
-    {{ text }}
+    {{ props.text }}
   </component>
 </template>
 
-<script lang="ts">
-export default {
-  name: "PageHeading",
-  props: {
-    text: {
-      type: String,
-      required: true,
-    },
-    size: {
-      type: String,
-      default: "h1",
-      validator: (value: string) => ["h1", "h2", "h3", "h4", "h5", "h6"].includes(value),
-    },
-    underline: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  computed: {
-    headingTag() {
-      return this.size.toLowerCase();
-    },
-  },
-};
-</script>
-
 <style scoped>
 .heading {
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
   margin: 0;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-6);
 }
 
 .heading--h1 {
@@ -66,5 +59,7 @@ export default {
 
 .heading--underline {
   text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--color-primary);
 }
 </style>

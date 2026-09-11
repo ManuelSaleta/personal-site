@@ -20,7 +20,7 @@ import SocialMedia from "./ContactInfo.vue";
           size="small"
           color="success"
           variant="tonal"
-          class="status-chip mt-3"
+          class="status-chip"
           prepend-icon="mdi-check-circle"
         >
           Open to Opportunities
@@ -97,6 +97,7 @@ import SocialMedia from "./ContactInfo.vue";
 }
 
 .status-chip {
+  margin-top: var(--space-3);
   font-weight: 600;
   letter-spacing: 0.02em;
 }

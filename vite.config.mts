@@ -8,7 +8,6 @@ import VueRouter from "unplugin-vue-router/vite";
 import { VueRouterAutoImports } from "unplugin-vue-router";
 import Vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 import vueDevTools from "vite-plugin-vue-devtools";
-import tailwindcss from "@tailwindcss/vite";
 
 // Utilities
 import { defineConfig } from "vite";
@@ -60,7 +59,6 @@ export default defineConfig({
       },
     }),
     vueDevTools(),
-    tailwindcss(),
   ],
   optimizeDeps: {
     exclude: [

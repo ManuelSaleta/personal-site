@@ -57,17 +57,17 @@ const embedUrl = computed(() => {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 400px; /* Constrain max width for vertical video layout */
+  max-width: 400px;
   margin: 0 auto;
 }
 
 .iframe-wrapper {
   position: relative;
   width: 100%;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
   background-color: #000000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .iframe-wrapper iframe {

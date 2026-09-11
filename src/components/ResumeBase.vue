@@ -29,7 +29,7 @@ function parsePeriod(subHeading: string): string {
 <template>
   <div class="resume-container">
     <!-- View Switcher (Cards vs Timeline) -->
-    <div class="d-flex justify-end align-center mb-6 no-print">
+    <div class="view-toggle-row no-print">
       <v-btn-toggle
         v-model="viewMode"
         mandatory
@@ -49,7 +49,7 @@ function parsePeriod(subHeading: string): string {
 
     <!-- 1. Horizontal Timeline Layout: Left to Right (Most Recent First) -->
     <div v-if="viewMode === 'timeline'" class="horizontal-timeline-wrapper">
-      <div class="timeline-hint text-caption text-medium-emphasis mb-3 d-flex align-center gap-2 no-print">
+      <div class="timeline-hint no-print">
         <v-icon icon="mdi-gesture-swipe-horizontal" size="18" color="primary" />
         <span>Scroll horizontally to explore career journey (Most Recent on left ➔ Previous roles)</span>
       </div>
@@ -83,7 +83,7 @@ function parsePeriod(subHeading: string): string {
                   size="small"
                   color="primary"
                   variant="tonal"
-                  class="font-weight-bold"
+                  class="opposite-chip"
                   prepend-icon="mdi-calendar-range"
                 >
                   {{ parsePeriod(section.sub_heading) }}
@@ -113,10 +113,9 @@ function parsePeriod(subHeading: string): string {
     </div>
 
     <!-- Bottom Actions / Extras -->
-    <v-divider class="my-8 opacity-20" />
+    <v-divider class="bottom-divider" />
     <div class="bottom-bar">
       <VideoPreviewWrapper
-        title="Intro Video"
         label="Watch Quick Intro"
         thumbnailUrl="https://img.youtube.com/vi/dj-GyXD9ZSc/maxresdefault.jpg"
       >
@@ -131,6 +130,26 @@ function parsePeriod(subHeading: string): string {
 <style scoped>
 .resume-container {
   width: 100%;
+}
+
+.view-toggle-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: var(--space-6);
+}
+
+.timeline-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.opposite-chip {
+  font-weight: 700;
 }
 
 /* Horizontal Timeline styles */
@@ -200,6 +219,11 @@ function parsePeriod(subHeading: string): string {
   @media (min-width: 960px) {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.bottom-divider {
+  margin: var(--space-8) 0;
+  opacity: 0.15;
 }
 
 .bottom-bar {

@@ -50,55 +50,172 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- Wrapper constrained to half-width (max-w-40 = 160px) -->
-  <div ref="containerRef" class="relative inline-block w-full max-w-40">
+  <div ref="containerRef" class="video-preview-wrapper">
     <!-- Base Trigger Button -->
     <button
       type="button"
-      class="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-slate-900 px-3 py-2.5 text-xs font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl active:translate-y-0"
+      class="video-trigger-btn"
       :aria-label="props.label"
       @click="openVideo"
     >
       <!-- Optional Background Thumbnail -->
       <div
         v-if="props.thumbnailUrl"
-        class="absolute inset-0 bg-cover bg-center opacity-25 transition-opacity duration-300 group-hover:opacity-40"
+        class="video-thumbnail-bg"
         :style="{ backgroundImage: `url(${props.thumbnailUrl})` }"
       />
 
-      <!-- Button Content (Proportionally scaled down) -->
-      <div class="relative z-10 flex items-center gap-1.5 min-w-0">
-        <span
-          class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-600/40 transition-transform duration-200 group-hover:scale-110"
-        >
+      <!-- Button Content -->
+      <div class="video-trigger-content">
+        <span class="play-icon-badge">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="ml-0.5 h-3.5 w-3.5"
+            class="play-svg-icon"
           >
             <path d="M8 5v14l11-7z" />
           </svg>
         </span>
-        <span class="truncate tracking-wide shadow-black drop-shadow-xs">{{ props.label }}</span>
+        <span class="video-trigger-label">{{ props.label }}</span>
       </div>
     </button>
 
-    <!-- Floating Overlay Embed (Maintains proper player size while anchoring to the smaller button) -->
-    <Transition
-      enter-active-class="transition duration-250 cubic-bezier(0.16, 1, 0.3, 1)"
-      enter-from-class="opacity-0 -translate-x-1/2 translate-y-2 scale-95"
-      enter-to-class="opacity-100 -translate-x-1/2 translate-y-0 scale-100"
-      leave-active-class="transition duration-200 cubic-bezier(0.16, 1, 0.3, 1)"
-      leave-from-class="opacity-100 -translate-x-1/2 translate-y-0 scale-100"
-      leave-to-class="opacity-0 -translate-x-1/2 translate-y-2 scale-95"
-    >
-      <div
-        v-if="isExpanded"
-        class="absolute bottom-full left-1/2 z-50 mb-3 w-90 max-w-[90vw] -translate-x-1/2 overflow-hidden rounded-2xl bg-black shadow-2xl ring-1 ring-white/10"
-      >
+    <!-- Floating Overlay Embed -->
+    <Transition name="video-modal">
+      <div v-if="isExpanded" class="video-popup-modal">
         <slot />
       </div>
     </Transition>
   </div>
 </template>
+
+<style scoped>
+.video-preview-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 180px;
+}
+
+.video-trigger-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.video-trigger-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--v-theme-primary), 0.4);
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.16);
+}
+
+.video-trigger-btn:active {
+  transform: translateY(0);
+}
+
+.video-thumbnail-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  transition: opacity var(--transition-normal);
+}
+
+.video-trigger-btn:hover .video-thumbnail-bg {
+  opacity: 0.35;
+}
+
+.video-trigger-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.play-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background-color: #e50914;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(229, 9, 20, 0.4);
+  transition: transform var(--transition-fast);
+}
+
+.video-trigger-btn:hover .play-icon-badge {
+  transform: scale(1.1);
+}
+
+.play-svg-icon {
+  width: 14px;
+  height: 14px;
+  margin-left: 1.5px;
+}
+
+.video-trigger-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.02em;
+}
+
+.video-popup-modal {
+  position: absolute;
+  bottom: calc(100% + var(--space-3));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: 360px;
+  max-width: 90vw;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  background-color: #000000;
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Modal Popup Transition */
+.video-modal-enter-active,
+.video-modal-leave-active {
+  transition:
+    opacity var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.video-modal-enter-from,
+.video-modal-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px) scale(0.95);
+}
+
+.video-modal-enter-to,
+.video-modal-leave-from {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+</style>

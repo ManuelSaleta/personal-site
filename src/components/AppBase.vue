@@ -5,12 +5,12 @@ import SkillsList from "./SkillsList.vue";
 </script>
 
 <template>
-  <v-container class="site-container py-6 px-4">
+  <v-container class="site-container">
     <!-- 1. Hero / Profile Header -->
     <AboutMe />
 
     <!-- 2. Skills Section -->
-    <section class="mt-8">
+    <section class="site-section">
       <div class="section-heading">
         <v-icon icon="mdi-xml" size="22" class="heading-icon" />
         <span>Relevant Skills</span>
@@ -19,7 +19,7 @@ import SkillsList from "./SkillsList.vue";
     </section>
 
     <!-- 3. Professional Experience Section -->
-    <section class="mt-8">
+    <section class="site-section">
       <div class="section-heading">
         <v-icon icon="mdi-briefcase-outline" size="22" class="heading-icon" />
         <span>Professional Experience</span>
@@ -34,6 +34,11 @@ import SkillsList from "./SkillsList.vue";
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  padding: var(--space-6) var(--space-4);
   margin: 0 auto;
+}
+
+.site-section {
+  margin-top: var(--space-8);
 }
 </style>
