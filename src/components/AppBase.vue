@@ -5,7 +5,7 @@ import SkillsList from "./SkillsList.vue";
 </script>
 
 <template>
-  <v-container class="site-container py-6 px-4" max-width="1100">
+  <v-container class="site-container py-6 px-4">
     <!-- 1. Hero / Profile Header -->
     <AboutMe />
 
