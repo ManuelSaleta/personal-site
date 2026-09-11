@@ -5,7 +5,7 @@ import SkillsList from "./SkillsList.vue";
 </script>
 
 <template>
-  <v-container class="site-container">
+  <v-container fluid class="site-container">
     <!-- 1. Hero / Profile Header -->
     <AboutMe />
 
@@ -31,6 +31,8 @@ import SkillsList from "./SkillsList.vue";
 
 <style scoped>
 .site-container {
+  width: 90% !important;
+  max-width: 90% !important;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
