@@ -9,16 +9,7 @@ import SkillsList from "./SkillsList.vue";
     <!-- 1. Hero / Profile Header -->
     <AboutMe />
 
-    <!-- 2. Skills Section -->
-    <section class="site-section">
-      <div class="section-heading">
-        <v-icon icon="mdi-xml" size="22" class="heading-icon" />
-        <span>Relevant Skills</span>
-      </div>
-      <SkillsList />
-    </section>
-
-    <!-- 3. Professional Experience Section -->
+    <!-- 2. Professional Experience Section -->
     <section class="site-section">
       <div class="section-heading">
         <v-icon icon="mdi-briefcase-outline" size="22" class="heading-icon" />
@@ -27,6 +18,15 @@ import SkillsList from "./SkillsList.vue";
       <ResumeBase />
     </section>
   </v-container>
+
+  <!-- 3. Skills Section -->
+  <section class="site-section">
+    <div class="section-heading">
+      <v-icon icon="mdi-xml" size="22" class="heading-icon" />
+      <span>Relevant Skills</span>
+    </div>
+    <SkillsList />
+  </section>
 </template>
 
 <style scoped>
