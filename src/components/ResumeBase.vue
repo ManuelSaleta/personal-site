@@ -189,16 +189,20 @@ function parsePeriod(subHeading: string): string {
 .career-timeline-horizontal {
   width: max-content !important;
   min-width: 100%;
-  padding-bottom: var(--space-4);
+  grid-auto-columns: 462px !important;
+  padding: var(--space-4) 60px var(--space-6);
 }
 
 .career-timeline-horizontal :deep(.v-timeline-item__body) {
-  width: 380px !important;
-  max-width: 420px !important;
+  width: 740px !important;
+  max-width: 740px !important;
+  margin-inline: -39px !important;
+  padding-inline: 0 !important;
 }
 
 .career-timeline-horizontal :deep(.v-timeline-item__opposite) {
-  width: 380px !important;
+  width: 100% !important;
+  max-width: 462px !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,6 +212,23 @@ function parsePeriod(subHeading: string): string {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .career-timeline-horizontal {
+    grid-auto-columns: 290px !important;
+    padding: var(--space-2) 24px var(--space-4);
+  }
+
+  .career-timeline-horizontal :deep(.v-timeline-item__body) {
+    width: 340px !important;
+    max-width: 340px !important;
+    margin-inline: -25px !important;
+  }
+
+  .career-timeline-horizontal :deep(.v-timeline-item__opposite) {
+    max-width: 290px !important;
+  }
 }
 
 /* Cards Mode: 2-column Grid on Desktop */
