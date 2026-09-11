@@ -17,16 +17,16 @@ import SkillsList from "./SkillsList.vue";
       </div>
       <ResumeBase />
     </section>
-  </v-container>
 
-  <!-- 3. Skills Section -->
-  <section class="site-section">
-    <div class="section-heading">
-      <v-icon icon="mdi-xml" size="22" class="heading-icon" />
-      <span>Relevant Skills</span>
-    </div>
-    <SkillsList />
-  </section>
+    <!-- 3. Skills Section -->
+    <section class="site-section">
+      <div class="section-heading">
+        <v-icon icon="mdi-xml" size="22" class="heading-icon" />
+        <span>Relevant Skills</span>
+      </div>
+      <SkillsList />
+    </section>
+  </v-container>
 </template>
 
 <style scoped>
