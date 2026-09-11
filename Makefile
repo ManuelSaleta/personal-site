@@ -16,8 +16,19 @@ dev: set-node-version ## Set node version, boot local DB, and start Vite dev ser
 	EMU_PID=$$!; \
 	trap 'kill $$EMU_PID 2>/dev/null' EXIT INT TERM; \
 	echo "Waiting for Firebase Emulators to respond..."; \
-	until curl -s http://127.0.0.1:8080 >/dev/null; do sleep 0.5; done; \
-	echo "Emulators online! Booting Vite..."; \
+	count=0; \
+	until nc -z 127.0.0.1 8080 2>/dev/null || ! kill -0 $$EMU_PID 2>/dev/null || [ $$count -ge 12 ]; do \
+		sleep 0.5; \
+		count=$$((count + 1)); \
+	done; \
+	if kill -0 $$EMU_PID 2>/dev/null; then \
+		echo "Emulators online! Booting Vite..."; \
+	else \
+		echo "Emulators exited or skipped. Booting Vite directly..."; \
+	fi; \
+	pnpm run dev
+
+dev-vite: ## Start only Vite dev server (without Firebase emulators)
 	pnpm run dev
 
 # Build production bundle

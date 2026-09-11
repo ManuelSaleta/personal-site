@@ -1,27 +1,39 @@
-<template>
-  <div class="site-base">
-    <!-- <SkillsList></SkillsList> -->
-    <AboutMe></AboutMe>
-    <Heading text="RELEVANT SKILLS" size="h2"></Heading>
-    <SkillsList></SkillsList>
-
-    <Heading text="PROFESSIONAL EXPERIENCE" size="h2"></Heading>
-    <ResumeBase> </ResumeBase>
-  </div>
-</template>
-
 <script setup lang="ts">
 import AboutMe from "./ResumeAbout.vue";
-import Heading from "./Heading.vue";
 import ResumeBase from "./ResumeBase.vue";
 import SkillsList from "./SkillsList.vue";
 </script>
 
+<template>
+  <v-container class="site-container py-6 px-4" max-width="1100">
+    <!-- 1. Hero / Profile Header -->
+    <AboutMe />
+
+    <!-- 2. Skills Section -->
+    <section class="mt-8">
+      <div class="section-heading">
+        <v-icon icon="mdi-xml" size="22" class="heading-icon" />
+        <span>Relevant Skills</span>
+      </div>
+      <SkillsList />
+    </section>
+
+    <!-- 3. Professional Experience Section -->
+    <section class="mt-8">
+      <div class="section-heading">
+        <v-icon icon="mdi-briefcase-outline" size="22" class="heading-icon" />
+        <span>Professional Experience</span>
+      </div>
+      <ResumeBase />
+    </section>
+  </v-container>
+</template>
+
 <style scoped>
-/* The content's styles. Refer to main.css for base styles */
-.site-base {
-  padding: 2rem;
-  max-width: 85%;
+.site-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
   margin: 0 auto;
 }
 </style>

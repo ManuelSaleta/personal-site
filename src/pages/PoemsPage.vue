@@ -20,14 +20,7 @@
 import { ref, onMounted } from "vue";
 import type { Poem } from "../common/interfaces";
 import documentDb from "@/firebase";
-import {
-  collection,
-  query,
-  orderBy,
-  getDocs,
-  QuerySnapshot,
-  limit,
-} from "firebase/firestore";
+import { collection, query, orderBy, getDocs, QuerySnapshot, limit } from "firebase/firestore";
 import type { DocumentData } from "firebase/firestore";
 import { ENV } from "@/main";
 import { poemFactory } from "@/common/mocks/factories";

@@ -13,18 +13,8 @@
 
   --vt-c-divider-light-1: rgba(60, 60, 60, 0.25);
   --vt-c-divider-light-2: rgba(60, 60, 60, 0.08);
-  --vt-c-divider-dark-1: rgba(
-    255,
-    255,
-    255,
-    0.14
-  ); /* DESIGN TWEAK: Cleaner, alpha-based */
-  --vt-c-divider-dark-2: rgba(
-    255,
-    255,
-    255,
-    0.06
-  ); /* dark borders that scale better */
+  --vt-c-divider-dark-1: rgba(255, 255, 255, 0.14); /* DESIGN TWEAK: Cleaner, alpha-based */
+  --vt-c-divider-dark-2: rgba(255, 255, 255, 0.06); /* dark borders that scale better */
 
   --vt-c-text-light-1: var(--vt-c-indigo);
   --vt-c-text-light-2: rgba(44, 62, 80, 0.7);
@@ -42,9 +32,7 @@
   --color-border-hover: var(--vt-c-divider-light-1);
 
   --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(
-    --vt-c-text-light-2
-  ); /* Use secondary text for standard body prose */
+  --color-text: var(--vt-c-text-light-2); /* Use secondary text for standard body prose */
 
   --section-gap: 160px;
 }
@@ -69,11 +57,9 @@ body {
   background: var(--color-background);
   transition:
     color 0.3s ease,
-    /* DESIGN TWEAK: Adjusted timing slightly for a snappy, */ background-color
-      0.3s ease; /* professional UI transition without feeling sluggish */
+    /* DESIGN TWEAK: Adjusted timing slightly for a snappy, */ background-color 0.3s ease; /* professional UI transition without feeling sluggish */
   line-height: 1.7; /* DESIGN TWEAK: 1.7 length offers pristine text legibility */
-  font-family:
-    "Inter", "Roboto", system-ui, sans-serif; /* Fallbacks with modern geometric text */
+  font-family: "Inter", "Roboto", system-ui, sans-serif; /* Fallbacks with modern geometric text */
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

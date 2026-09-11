@@ -1,47 +1,33 @@
 @import "./base.css";
+@import "./styles.scss";
 @import "tailwindcss";
 
 /* --------------------------------------------------------------------------
    Structural Application Wrapper
    -------------------------------------------------------------------------- */
 #app {
-  width: 90%;
-  max-width: 1440px; /* Protects readability on ultra-wide screens */
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /* --------------------------------------------------------------------------
    Interactive Elements & Hover Enhancements
+   (Exclude Vuetify UI components so v-chip, v-btn, etc. use their theme colors)
    -------------------------------------------------------------------------- */
-a {
-  color: var(--color-text); /* Fallback to the pristine base theme text color */
+a:not([class*="v-"]) {
+  color: var(--color-primary);
   text-decoration: none;
   border-radius: 0.25rem;
-  padding: 0.2rem 0.4rem; /* Added slight padding so the hover highlight doesn't choke the characters */
+  padding: 0.1rem 0.25rem;
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease; /* Kept smooth but slightly snappier for immediate interactive feedback */
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 @media (hover: hover) {
-  a:hover {
-    /* Hard contrast shift: Lock text to deep primary indigo, backdropped by a soft tint */
-    color: var(--vt-c-indigo);
-    background-color: rgba(44, 62, 80, 0.08);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  a {
-    color: var(--color-text);
-  }
-
-  @media (hover: hover) {
-    a:hover {
-      /* Dark mode contrast shift: Lock text to pure light-gray/white against a soft white glow */
-      color: var(--vt-c-text-dark-1);
-      background-color: rgba(255, 255, 255, 0.12);
-    }
+  a:not([class*="v-"]):hover {
+    background-color: rgba(var(--v-theme-primary), 0.12);
   }
 }
