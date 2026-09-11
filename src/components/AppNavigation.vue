@@ -3,11 +3,8 @@ import { ref, computed } from "vue";
 import { useTheme } from "vuetify";
 import bannerImg from "@/assets/banner.png";
 import resumePdf from "@/assets/manuel_saleta_resume.pdf";
-import { useBackgroundStyle } from "@/composables/useBackgroundStyle";
-
 const drawer = ref(false);
 const theme = useTheme();
-const { currentBackground, backgroundOptions, setBackgroundStyle } = useBackgroundStyle();
 
 const isDark = computed(() => theme.global.current.value.dark);
 
@@ -75,43 +72,6 @@ const links = [
         title="Toggle Theme"
         @click="toggleTheme"
       />
-
-      <!-- Background Style Switcher Menu -->
-      <v-menu location="bottom end" transition="slide-y-transition">
-        <template #activator="{ props: menuProps }">
-          <v-btn
-            v-bind="menuProps"
-            icon="mdi-texture-box"
-            variant="text"
-            size="small"
-            title="Choose Background Style"
-          />
-        </template>
-        <v-list density="compact" rounded="lg" class="bg-selector-menu">
-          <v-list-subheader class="font-weight-bold text-uppercase text-caption">
-            Background Style
-          </v-list-subheader>
-          <v-list-item
-            v-for="opt in backgroundOptions"
-            :key="opt.id"
-            :value="opt.id"
-            :prepend-icon="opt.icon"
-            :active="currentBackground === opt.id"
-            color="primary"
-            @click="setBackgroundStyle(opt.id)"
-          >
-            <v-list-item-title class="font-weight-medium">
-              {{ opt.label }}
-            </v-list-item-title>
-            <v-list-item-subtitle class="text-caption">
-              {{ opt.description }}
-            </v-list-item-subtitle>
-            <template v-if="currentBackground === opt.id" #append>
-              <v-icon icon="mdi-check" color="primary" size="18" />
-            </template>
-          </v-list-item>
-        </v-list>
-      </v-menu>
 
       <!-- Direct Resume Download Button -->
       <v-btn
@@ -195,11 +155,5 @@ const links = [
   @media (min-width: 600px) {
     display: inline-flex;
   }
-}
-
-.bg-selector-menu {
-  min-width: 250px;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.25) !important;
 }
 </style>
