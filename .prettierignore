@@ -1,0 +1,7 @@
+node_modules
+dist
+dist-ssr
+.firebase
+.eslintcache
+pnpm-lock.yaml
+*.log

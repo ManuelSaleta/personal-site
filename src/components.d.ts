@@ -15,6 +15,7 @@ declare module 'vue' {
     AppNavigation: typeof import('./components/AppNavigation.vue')['default']
     ContactInfo: typeof import('./components/ContactInfo.vue')['default']
     Heading: typeof import('./components/Heading.vue')['default']
+    IFrameContainer: typeof import('./components/IFrameContainer.vue')['default']
     ResumeAbout: typeof import('./components/ResumeAbout.vue')['default']
     ResumeBase: typeof import('./components/ResumeBase.vue')['default']
     ResumeDownloadBtn: typeof import('./components/ResumeDownloadBtn.vue')['default']
@@ -23,5 +24,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SkillPill: typeof import('./components/SkillPill.vue')['default']
     SkillsList: typeof import('./components/SkillsList.vue')['default']
+    VideoPreviewWrapper: typeof import('./components/VideoPreviewWrapper.vue')['default']
   }
 }

@@ -6,20 +6,24 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - main
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v3
+      # Bump pnpm to v11 to match local environment
+      - uses: pnpm/action-setup@v4
         with:
-          version: 9 # Using v9 for maximum compatibility with Firebase tools
+          version: 11
 
+      # Target Node 22 for runner stability & setup pnpm caching
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "pnpm"
+          cache-dependency-path: "./pnpm-lock.yaml"
 
       - name: Install dependencies and build
         run: |

@@ -1,32 +1,32 @@
 @import "./base.css";
-@import "tailwindcss";
+@import "./styles.scss";
 
-body {
-  font-family: "Roboto", sans-serif;
+/* --------------------------------------------------------------------------
+   Structural Application Wrapper
+   -------------------------------------------------------------------------- */
+#app {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-#app {
-  width: 90%;
-  /* max-width: 2048px; */
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+/* --------------------------------------------------------------------------
+   Interactive Elements & Hover Enhancements
+   (Exclude Vuetify UI components so v-chip, v-btn, etc. use their theme colors)
+   -------------------------------------------------------------------------- */
+a:not([class*="v-"]) {
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.25rem;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 @media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-/* Center content */
-@media (min-width: 100%) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: flex;
+  a:not([class*="v-"]):hover {
+    background-color: rgba(var(--v-theme-primary), 0.12);
   }
 }
