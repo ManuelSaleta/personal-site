@@ -4,63 +4,74 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
 # Phony targets
-.PHONY: help dev build preview lint fmt test clean set-node-version local-db
+.PHONY: help \
+	web api db dev \
+	docker-web docker-api docker-db docker-up docker-down docker-db-nuke docker-nuke \
+	openapi-regen \
+	build test lint fmt clean
 
 help: ## Show available commands
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-18s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-# Start dev server with sequential emulator health check
-dev: set-node-version ## Set node version, boot local DB, and start Vite dev server
-	@echo "Starting Firebase emulators..."
-	@firebase emulators:start & \
-	EMU_PID=$$!; \
-	trap 'kill $$EMU_PID 2>/dev/null' EXIT INT TERM; \
-	echo "Waiting for Firebase Emulators to respond..."; \
-	count=0; \
-	until nc -z 127.0.0.1 8080 2>/dev/null || ! kill -0 $$EMU_PID 2>/dev/null || [ $$count -ge 12 ]; do \
-		sleep 0.5; \
-		count=$$((count + 1)); \
-	done; \
-	if kill -0 $$EMU_PID 2>/dev/null; then \
-		echo "Emulators online! Booting Vite..."; \
-	else \
-		echo "Emulators exited or skipped. Booting Vite directly..."; \
-	fi; \
-	pnpm run dev
+# ==============================================================================
+# Native Local Targets
+# ==============================================================================
 
-dev-vite: ## Start only Vite dev server (without Firebase emulators)
-	pnpm run dev
+web: ## Start Angular 22+ frontend natively ($root/web)
+	@echo "[TODO] Starting web natively..."
 
-# Build production bundle
-build: ## Build production bundle
-	pnpm run build
+api: ## Start .NET 10 Modular-Monolith API natively ($root/api)
+	@echo "[TODO] Starting api natively..."
 
-# Preview production build locally and open browser (macOS)
-preview: build ## Preview production build on localhost and open browser
-	pnpm run preview --port 4173 & sleep 1 && open http://localhost:4173
+db: ## Start local PostgreSQL 17 instance
+	@echo "[TODO] Starting db..."
 
-# Lint (assumes lint script exists)
-lint: ## Run linter
-	pnpm run lint
+dev: ## Start full stack natively (db + api + web)
+	@echo "[TODO] Starting full stack natively..."
 
-# Format (assumes format script exists)
-fmt: ## Run formatter
-	pnpm run format
+# ==============================================================================
+# Docker Counterpart Targets
+# ==============================================================================
 
-# Run tests (assumes test script exists)
-test: ## Run tests
-	pnpm test
+docker-web: ## Run Angular 22+ frontend container via Docker Compose
+	@echo "[TODO] Running web in Docker..."
 
-# Clean build artifacts
-clean: fmt lint ## Remove build artifacts and caches
-	rm -rf dist .vite node_modules/.vite
+docker-api: ## Run .NET 10 API container via Docker Compose
+	@echo "[TODO] Running api in Docker..."
 
-# Use the required node version
-set-node-version: ## Uses the required node version for this project
-	@export NVM_DIR="$$HOME/.nvm"; \
-	[ -s "$$NVM_DIR/nvm.sh" ] && . "$$NVM_DIR/nvm.sh"; \
-	nvm use --lts
+docker-db: ## Run PostgreSQL 17 + Mailpit containers via Docker Compose
+	@echo "[TODO] Running db in Docker..."
 
-# Starts the emulator background process
-local-db: ## Starts the Firebase emulators directly
-	firebase emulators:start &
+docker-up: ## Run full stack (db + api + web) in Docker Compose
+	@echo "[TODO] Starting full stack in Docker..."
+
+docker-down: ## Stop running Docker Compose containers (preserves volumes)
+	@echo "[TODO] Stopping Docker containers..."
+
+docker-db-nuke: ## Destroy only the PostgreSQL container & data volume, then restart clean db
+	@echo "[TODO] Nuking Docker db volume..."
+
+docker-nuke: ## Destroy all project containers, volumes, networks, local images & orphans
+	@echo "[TODO] Nuking all Docker state..."
+
+# ==============================================================================
+# Codegen & Quality Targets
+# ==============================================================================
+
+openapi-regen: ## Build .NET 10 OpenAPI 3.1 spec (api/openapi/v1.json) & regenerate Angular TypeScript client
+	@echo "[TODO] Regenerating OpenAPI 3.1 spec and Angular client..."
+
+build: ## Build production bundles for web and api
+	@echo "[TODO] Building web and api..."
+
+test: ## Run unit and integration tests
+	@echo "[TODO] Running tests..."
+
+lint: ## Run linters across web and api
+	@echo "[TODO] Running linters..."
+
+fmt: ## Format code across web and api
+	@echo "[TODO] Formatting code..."
+
+clean: ## Remove build artifacts and caches
+	@echo "[TODO] Cleaning artifacts..."

@@ -1,7 +1,6 @@
-node_modules
-dist
-dist-ssr
-.firebase
-.eslintcache
-pnpm-lock.yaml
-*.log
+dist/
+node_modules/
+.angular/
+.firebase/
+package-lock.json
+api/
