@@ -1,23 +1,24 @@
-## Description
+## 🚀 Overview
+<!-- Briefly describe the changes introduced by this PR. What problem does it solve? -->
 
-## Type of Change
+## 🛠️ Type of Change
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] Refactor / Technical Debt
+- [ ] Documentation update
 
-- [ ] 🚀 Feature
-- [ ] 🐛 Bug Fix
-- [ ] 🧹 Refactor
-- [ ] 📝 Documentation
+## 📝 Key Changes
+- [ ] Implemented...
+- [ ] Fixed issue with...
+- [ ] Updated dependencies...
 
-## How Has This Been Tested?
+## 🧪 How Has This Been Tested?
+- [ ] Manual verification
+- [ ] Unit / Integration tests
 
-- [ ] Manual browser testing (Chrome/Safari)
-- [ ] Verified local build passes (`pnpm run build`)
-- [ ] Checked mobile responsiveness
+## 📸 Screenshots (if applicable)
+<!-- Add screenshots or GIFs of UI changes here -->
 
-## Screenshots / Videos
-
-## Checklist:
-
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] My changes generate no new warnings in the console
+## 🔗 Related Issues
+Fixes # (issue number)
