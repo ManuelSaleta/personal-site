@@ -6,7 +6,7 @@
 > - **Monorepo Layout**: The repository is structured as a **Monorepo Modular-Monolith** with two primary top-level application directories at `$root` (alongside root documentation `README.md`, `plan.md`, `design.md`, `AGENTS.md`, `Makefile`, and `compose.yaml`):
 >   - **`$root/web/`**: The **Angular 22+ (Zoneless, Signals-first, Standalone)** frontend workspace, Storybook (`@storybook/angular`), Shared UI Component Library (`@ui`), and single global stylesheet (`web/src/styles/styles.scss`).
 >   - **`$root/api/`**: The **100% Self-Owned .NET 10 Modular Monolith** (`PersonalSite.slnx` / `PersonalSite.sln`) organized by domain modules (`Resume`, `Poems`, `Books`, `Store`, `Identity/Admin`) over **Entity Framework Core 10 + PostgreSQL**.
-> - **Part 1 (First Priority — `$root/web/`)**: Port the existing Vue 3 + Vuetify 3 frontend into `$root/web/` using **Modern Angular 22+**, a **Shared UI Component Library (`@ui`)** wrapping Angular Material (M3) components, a **single [`web/src/styles/styles.scss`](file:///Users/manuelsaleta/Projects/personal-site/web/src/styles/styles.scss) file**, the **Store Tab (`/store`) UI**, and **Storybook (`@storybook/angular`)** per [`design.md`](file:///Users/manuelsaleta/Projects/personal-site/design.md).
+> - **Part 1 (First Priority — `$root/web/`)**: Port the existing Vue 3 + Vuetify 3 frontend into `$root/web/` using **Modern Angular 22+**, a **Shared UI Component Library (`@ui`)** wrapping Angular Material (M3) components, a **single [`web/src/styles/styles.scss`](web/src/styles/styles.scss) file**, the **Store Tab (`/store`) UI**, and **Storybook (`@storybook/angular`)** per [`design.md`](design.md).
 > - **Part 2 (Second Priority — `$root/api/`)**: Build the **100% Self-Owned Modern .NET 10 Modular-Monolith Minimal API + Entity Framework Core 10 + PostgreSQL** backend in `$root/api/`—including our hand-rolled **Shopping Cart & Coupon Engine**, **In-House Tax & PDF Invoice Generator**, **Direct Stripe Payment Processing (zero SaaS add-on fees)**, **PostgreSQL Outbox + SMTP/MailKit Email Fulfillment Worker**, **On-the-Fly Buyer PDF Watermarking & Self-Hosted Storage Vault**, **Store Admin Catalog API**, **OpenAPI 3.1** codegen (`openapi/v1.json` consumed by `web/`), and root **Prettier + ESLint + Husky** pre-commit hooks.
 
 ---
@@ -85,7 +85,7 @@ Every service in the monorepo (`web/`, `api/`, `db` (`postgres:17-alpine`), `mai
 
 ### 1.1 Existing Codebase Baseline (Measured)
 
-An audit of `/home/gman/Projects/personal-site/src` shows:
+An audit of the legacy `src/` directory shows:
 
 - **18 Vue Components/Pages (`.vue`)**: **1,926 LOC** total (~625 LOC TypeScript, ~450 LOC HTML templates, ~851 LOC `<style scoped>`)
 - **8 TypeScript Modules (`.ts`, excluding generated `.d.ts`)**: **182 LOC**
@@ -97,7 +97,7 @@ An audit of `/home/gman/Projects/personal-site/src` shows:
 | Workstream                                                                                                                                                                                                                                        |         Files to Create / Port          |   Source LOC   | Projected Angular LOC |   Complexity / Size    | Story Points (Fibonacci) | Estimated Effort (Human Dev) | Estimated Effort (AI Pair) |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------: | :------------: | :-------------------: | :--------------------: | :----------------------: | :--------------------------: | :------------------------: |
 | **1. Angular 22+ Workspace & Build Config** (`package.json`, `angular.json`, `tsconfig*.json`, path aliases)                                                                                                                                      |                 6 files                 |    ~180 LOC    |       ~220 LOC        |      **S** (Low)       |         **2 SP**         |           2–3 hrs            |          ~10 mins          |
-| **2. Single Global Stylesheet (`src/styles/styles.scss`)** (M3 Light/Dark Theme + all consolidated `<style scoped>` rules + Store & Print CSS per [`design.md`](file:///home/gman/Projects/personal-site/design.md))                              |                 1 file                  |   1,119 LOC    |       ~860 LOC        |     **M** (Medium)     |         **3 SP**         |           4–6 hrs            |          ~15 mins          |
+| **2. Single Global Stylesheet (`web/src/styles/styles.scss`)** (M3 Light/Dark Theme + all consolidated `<style scoped>` rules + Store & Print CSS per [`design.md`](design.md))                                                                   |                 1 file                  |   1,119 LOC    |       ~860 LOC        |     **M** (Medium)     |         **3 SP**         |           4–6 hrs            |          ~15 mins          |
 | **3. Shared UI Wrapper Library (`src/app/shared/ui/`)** (Wraps Angular Material M3: Card, Chip, Button, Icon, Toolbar, Drawer, ButtonToggle, Divider, Spinner, Avatar, Timeline, ProductCard + Domain UI wrappers)                                |    15 components + barrel `index.ts`    |    ~502 LOC    |       ~720 LOC        | **M–L** (Medium-High)  |         **5 SP**         |           8–12 hrs           |          ~25 mins          |
 | **4. Storybook UI Component Design & Catalog (`.storybook/` + `*.stories.ts`)** (`@storybook/angular`, Dark/Light M3 theme switcher, a11y addon, Compodoc, CSF 3 stories for `@ui`)                                                               | 2 config files + 14 `.stories.ts` files |     0 LOC      |       ~480 LOC        |     **M** (Medium)     |         **3 SP**         |           4–6 hrs            |          ~15 mins          |
 | **5. Core Services, Shell & Navigation** (`ThemeService`, `ResumeService`, `PoemsService`, `StoreService`, `AppComponent`, `AppNavigationComponent`, `app.routes.ts`)                                                                             |                 9 files                 |    ~354 LOC    |       ~410 LOC        |     **M** (Medium)     |         **3 SP**         |           4–6 hrs            |          ~15 mins          |
@@ -109,14 +109,14 @@ An audit of `/home/gman/Projects/personal-site/src` shows:
 
 ## 2. Part 1: Angular 22+ Frontend, Shared UI Library (`@ui`), Storybook & Single `styles.scss`
 
-All visual standards, Light/Dark M3 token scales, component encapsulation rules, and Storybook CSF 3 requirements are governed by **[`design.md`](file:///home/gman/Projects/personal-site/design.md)**.
+All visual standards, Light/Dark M3 token scales, component encapsulation rules, and Storybook CSF 3 requirements are governed by **[`design.md`](design.md)**.
 
 ### 2.1 Angular 22+ & TypeScript 6.0+ Best Practices
 
 - **Zoneless by Default**: Bootstrap with `provideZonelessChangeDetection()` in `src/app/app.config.ts` and omit `zone.js` from `angular.json`. All reactivity is driven by Angular Signals.
 - **Implicit Standalone & `OnPush` Defaults**: Do NOT set `standalone: true` (default in Angular v20+) and do NOT set `changeDetection: ChangeDetectionStrategy.OnPush` explicitly (default in Angular v22+).
 - **Singleton Services**: Prefer `@Service` over `@Injectable({ providedIn: 'root' })` for new singleton services (Angular v22+) and always use `inject()` instead of constructor injection.
-- **No Per-Component Stylesheets**: Components omit `styleUrl` / `styles` metadata altogether. All styling lives in [`src/styles/styles.scss`](file:///home/gman/Projects/personal-site/src/styles/styles.scss).
+- **No Per-Component Stylesheets**: Components omit `styleUrl` / `styles` metadata altogether. All styling lives in [`web/src/styles/styles.scss`](web/src/styles/styles.scss).
 - **Signals-First APIs**: `input<T>()`, `input.required<T>()`, `output<T>()`, `model<T>()`, `viewChild<ElementRef<HTMLElement>>()`, `signal<T>()`, `computed<T>()`, `linkedSignal<T>()`, and `resource()` / `httpResource()`. Never use `mutate` on signals; use `set` or `update`.
 - **Host Bindings & Images**: Place host bindings/listeners inside the `host: { ... }` object of `@Component` / `@Directive` (never `@HostBinding` or `@HostListener`). Use `NgOptimizedImage` for all static images.
 - **Modern Template Control Flow**: Native `@if`, `@else`, `@for (...; track ...)`, `@switch`, `@let`, and `@defer` blocks exclusively; `[class]` and `[style]` bindings instead of `ngClass`/`ngStyle`; never import `CommonModule`.
