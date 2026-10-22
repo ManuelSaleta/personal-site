@@ -231,11 +231,11 @@ html.light-theme {
   * **Books** (`/BooksPage`, `mdi-book-open-outline`)
 * Active route tab uses a primary tonal pill indicator (`color="primary"`, `variant="tonal"`).
 
-### 5.2 Storefront Layout & Product Card (`<ui-product-card>`)
-* **Category Filter Bar**: Horizontal row of `<ui-chip>` filter pills (`All`, `PDF Guides & eBooks`, `Architecture Templates`, `Poetry Collections`).
+### 5.2 Storefront Layout & Product Card (`<mes-product-card>`)
+* **Category Filter Bar**: Horizontal row of `<mes-chip>` filter pills (`All`, `PDF Guides & eBooks`, `Architecture Templates`, `Poetry Collections`).
 * **Product Grid (`.store-grid`)**: Responsive CSS Grid (`1fr` on mobile, `repeat(2, 1fr)` on tablet, `repeat(3, 1fr)` on desktop `>= 1024px`, `gap: var(--space-5)`).
-* **`UiProductCardComponent` (`<ui-product-card>`)**:
-  * Built on `<ui-card rounded="2xl" class="m3-card product-card">`.
+* **`MesProductCardComponent` (`<mes-product-card>`)**:
+  * Built on `<mes-card class="m3-card product-card">`.
   * **Cover Preview Header**: `16/10` aspect-ratio cover thumbnail with a floating format badge (`PDF • 42 Pages` or `ZIP Bundle`) and price pill (`$19.00`).
   * **Body**: Product title (`.product-title`), concise description, included feature bullets, and action bar (`Preview Sample` secondary button + `Buy Now` primary tonal button with `mdi-lock-check-outline` / `mdi-cart-arrow-right`).
 * **Post-Purchase Fulfillment Card (`/store/success`)**:
@@ -245,26 +245,24 @@ html.light-theme {
 
 ## 6. Shared UI Component Library (`@ui`) & Storybook Standards
 
-### 6.1 Architectural Boundary
-Feature components (`src/app/features/**`) **must never import `@angular/material/*` directly**. They only consume `@ui` components (`src/app/shared/ui/index.ts`), which are styled by `src/styles/styles.scss` and documented in **Storybook**.
+### 6.1 Architectural Boundary & `MesSharedComponent` Contract
+* Feature components (`src/app/features/**`) **must never import `@angular/material/*` directly**. They only consume generic `@ui` components (`src/app/shared/ui/index.ts`), which are documented in **Storybook**.
+* Every component in `src/app/shared/ui/` uses the `mes-*.component.ts` file naming, `<mes-*>` selector, and `Mes*Component` class convention, and directly implements [`MesSharedComponent`](web/src/app/shared/ui/contracts/shared_component.ts) (`id` & `testdataId` with `{ transform: trimmed }`, `disabled`, `hidden`, and `styleOverride`), starting its template with `@if (!hidden()) { ... }` and defining component-scoped `styles: \`...\`` where component-specific classes are needed.
 
 ### 6.2 Required Storybook Stories Catalog (`src/app/shared/ui/`)
 | Component | Selector | Story File | Key States / Variants Covered in Storybook |
 | :--- | :--- | :--- | :--- |
-| `UiCardComponent` | `<ui-card>` | `ui-card.component.stories.ts` | Outlined M3 surface (Dark & Light), `xl` / `2xl` radius, hover elevation, header/body/footer slots |
-| `UiChipComponent` | `<ui-chip>` | `ui-chip.component.stories.ts` | Tonal, elevated, outlined, sizes (`x-small`, `small`, `medium`), `prependIcon`, anchor `href` |
-| `UiButtonComponent` | `<ui-button>` | `ui-button.component.stories.ts` | Tonal, text, outlined, primary/secondary, `prependIcon`, download link |
-| `UiIconButtonComponent` | `<ui-icon-button>` | `ui-icon-button.component.stories.ts` | Social icon links, theme toggle icon button (`mdi-weather-sunny` / `mdi-weather-night`), required `ariaLabel` |
-| `UiIconComponent` | `<ui-icon>` | `ui-icon.component.stories.ts` | `mdi-*` icon gallery, custom pixel sizes (`14px`–`32px`), semantic colors |
-| `UiButtonToggleComponent` | `<ui-button-toggle>` | `ui-button-toggle.component.stories.ts` | Timeline vs Cards switcher with two-way `model()` signal binding |
-| `UiTimelineComponent` | `<ui-timeline>` | `ui-timeline.component.stories.ts` | Horizontal scroll track, node dots, opposite date pills, left/right edge-glow indicators |
-| `UiToolbarComponent` & `UiDrawerComponent` | `<ui-toolbar>`, `<ui-drawer>` | `ui-toolbar.component.stories.ts` | App bar with banner overlay, navigation tabs (`Home`, `Store`, `Poems`), mobile drawer |
-| `UiProductCardComponent` | `<ui-product-card>` | `ui-product-card.component.stories.ts` | Digital PDF/e-good product card, price badge, format chip, loading/checkout state in Dark & Light mode |
-| `UiAvatarComponent`, `UiDividerComponent`, `UiSpinnerComponent` | `<ui-avatar>`, `<ui-divider>`, `<ui-spinner>` | `ui-primitives.stories.ts` | Tonal avatar, subtle divider, indeterminate loading state |
-| `SkillPillComponent` | `<ui-skill-pill>` | `skill-pill.component.stories.ts` | Brand hex color pills (`.NET`, `TypeScript`, `Angular`, `Kubernetes`) in Dark & Light mode |
-| `HeadingComponent` | `<ui-heading>` | `heading.component.stories.ts` | `h1`–`h6` scale with and without primary underline |
-| `ResumeDownloadBtnComponent` | `<ui-resume-download-btn>` | `resume-download-btn.component.stories.ts` | Direct PDF download trigger |
-| `VideoPreviewWrapperComponent` & `IFrameContainerComponent` | `<ui-video-preview-wrapper>`, `<ui-iframe-container>` | `video-preview-wrapper.component.stories.ts` | Collapsed thumbnail trigger, expanded floating YouTube modal, outside-click close |
+| `MesCardComponent` | `<mes-card>` | `mes-card.component.stories.ts` | Outlined M3 surface (Dark & Light), `interactive`, `accentBar`, `padding`, `disabled`/`hidden` states |
+| `MesChipComponent` | `<mes-chip>` | `mes-chip.component.stories.ts` | Variants (`primary`, `secondary`, `outline`, `custom` hex color), sizes (`sm`, `md`), `icon`, anchor `href` |
+| `MesButtonComponent` | `<mes-button>` | `mes-button.component.stories.ts` | Variants (`flat`, `tonal`, `stroked`, `text`), `icon`, anchor `href`, `download` link |
+| `MesIconButtonComponent` | `<mes-icon-button>` | `mes-icon-button.component.stories.ts` | Social icon links, theme toggle icon button (`mdi-weather-sunny` / `mdi-weather-night`), required `ariaLabel` |
+| `MesIconComponent` | `<mes-icon>` | `mes-icon.component.stories.ts` | `mdi-*` icon gallery, custom pixel sizes (`14px`–`32px`), semantic colors |
+| `MesButtonToggleComponent` | `<mes-button-toggle>` | `mes-button-toggle.component.stories.ts` | Timeline vs Cards switcher with two-way `model()` signal binding |
+| `MesTimelineComponent` & `MesTimelineItemComponent` | `<mes-timeline>`, `<mes-timeline-item>` | `mes-timeline.component.stories.ts` | Vertical/horizontal timeline track, node dots, opposite date pills, body slots |
+| `MesToolbarComponent` & `MesDrawerComponent` | `<mes-toolbar>`, `<mes-drawer>` | `mes-toolbar.component.stories.ts` | App bar with sticky elevation, navigation tabs (`Home`, `Store`, `Poems`), slide-over drawer |
+| `MesAvatarComponent`, `MesDividerComponent`, `MesSpinnerComponent` | `<mes-avatar>`, `<mes-divider>`, `<mes-spinner>` | `mes-primitives.stories.ts` | Tonal avatar (`sm`–`xl`), subtle divider, indeterminate loading state |
+| `MesHeadingComponent` | `<mes-heading>` | `mes-heading.component.stories.ts` | Semantic `h1`–`h6` scale with optional subtitle and primary accent underline |
+| `MesVideoPreviewComponent` & `MesIframeComponent` | `<mes-video-preview>`, `<mes-iframe>` | `mes-video-preview.component.stories.ts` | Interactive media preview card, `DomSanitizer`-validated iframe container |
 
 ---
 
