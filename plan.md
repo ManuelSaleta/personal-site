@@ -116,17 +116,16 @@ All visual standards, Light/Dark M3 token scales, component encapsulation rules,
 - **Zoneless by Default**: Bootstrap with `provideZonelessChangeDetection()` in `src/app/app.config.ts` and omit `zone.js` from `angular.json`. All reactivity is driven by Angular Signals.
 - **Implicit Standalone & `OnPush` Defaults**: Do NOT set `standalone: true` (default in Angular v20+) and do NOT set `changeDetection: ChangeDetectionStrategy.OnPush` explicitly (default in Angular v22+).
 - **Singleton Services**: Prefer `@Service` over `@Injectable({ providedIn: 'root' })` for new singleton services (Angular v22+) and always use `inject()` instead of constructor injection.
-- **No Per-Component Stylesheets**: Components omit `styleUrl` / `styles` metadata altogether. All styling lives in [`web/src/styles/styles.scss`](web/src/styles/styles.scss).
+- **Global Theme Tokens & Component Styles**: Global design tokens, typography, and layout rules live in [`web/src/styles/styles.scss`](web/src/styles/styles.scss); shared `@ui` components that require component-specific style classes define inline `styles: \`...\`` consuming those CSS custom properties.
 - **Signals-First APIs**: `input<T>()`, `input.required<T>()`, `output<T>()`, `model<T>()`, `viewChild<ElementRef<HTMLElement>>()`, `signal<T>()`, `computed<T>()`, `linkedSignal<T>()`, and `resource()` / `httpResource()`. Never use `mutate` on signals; use `set` or `update`.
 - **Host Bindings & Images**: Place host bindings/listeners inside the `host: { ... }` object of `@Component` / `@Directive` (never `@HostBinding` or `@HostListener`). Use `NgOptimizedImage` for all static images.
 - **Modern Template Control Flow**: Native `@if`, `@else`, `@for (...; track ...)`, `@switch`, `@let`, and `@defer` blocks exclusively; `[class]` and `[style]` bindings instead of `ngClass`/`ngStyle`; never import `CommonModule`.
 
 ### 2.2 Shared UI Component Library (`src/app/shared/ui/` — `@ui`) & Storybook
 
-Feature and page components **never import `@angular/material/*` directly**. All Material primitives are encapsulated inside `src/app/shared/ui/`, exported via `@ui`, and interactively designed/verified in **Storybook** (`@storybook/angular` with Light/Dark theme switching):
+Feature and page components **never import `@angular/material/*` directly**. All Material primitives are encapsulated inside generic `mes-*` components in `src/app/shared/ui/` implementing [`MesSharedComponent`](web/src/app/shared/ui/contracts/shared_component.ts) (`id`, `testdataId` with `{ transform: trimmed }`, `disabled`, `hidden`, `styleOverride`), exported via `@ui`, and interactively designed/verified in **Storybook** (`@storybook/angular` with Light/Dark theme switching):
 
-- `UiCardComponent` (`<ui-card>`), `UiChipComponent` (`<ui-chip>`), `UiButtonComponent` (`<ui-button>`), `UiIconButtonComponent` (`<ui-icon-button>`), `UiIconComponent` (`<ui-icon>`), `UiToolbarComponent` (`<ui-toolbar>`), `UiDrawerComponent` (`<ui-drawer>`), `UiButtonToggleComponent` (`<ui-button-toggle>`), `UiTimelineComponent` & `UiTimelineItemComponent` (`<ui-timeline>`, `<ui-timeline-item>`), `UiProductCardComponent` (`<ui-product-card>`), `UiDividerComponent`, `UiSpinnerComponent`, `UiAvatarComponent`.
-- Domain UI wrappers: `SkillPillComponent`, `HeadingComponent`, `ResumeDownloadBtnComponent`, `VideoPreviewWrapperComponent`, `IFrameContainerComponent`.
+- `MesCardComponent` (`<mes-card>`), `MesChipComponent` (`<mes-chip>`), `MesButtonComponent` (`<mes-button>`), `MesIconButtonComponent` (`<mes-icon-button>`), `MesIconComponent` (`<mes-icon>`), `MesToolbarComponent` (`<mes-toolbar>`), `MesDrawerComponent` (`<mes-drawer>`), `MesButtonToggleComponent` (`<mes-button-toggle>`), `MesTimelineComponent` & `MesTimelineItemComponent` (`<mes-timeline>`, `<mes-timeline-item>`), `MesDividerComponent` (`<mes-divider>`), `MesSpinnerComponent` (`<mes-spinner>`), `MesAvatarComponent` (`<mes-avatar>`), `MesHeadingComponent` (`<mes-heading>`), `MesIframeComponent` (`<mes-iframe>`), `MesVideoPreviewComponent` (`<mes-video-preview>`).
 
 ---
 
