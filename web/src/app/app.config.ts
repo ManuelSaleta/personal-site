@@ -1,3 +1,4 @@
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import {
   type ApplicationConfig,
   provideBrowserGlobalErrorListeners,
@@ -11,12 +12,13 @@ import { routes } from './app.routes';
  *
  * @remarks
  * Uses `provideZonelessChangeDetection()` so all UI updates are driven by Angular Signals
- * without `zone.js` overhead.
+ * without `zone.js` overhead, alongside `provideHttpClient(withFetch())` and `provideRouter()`.
  */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
+    provideHttpClient(withFetch()),
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
   ],
 };

@@ -1,21 +1,17 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AppNavigationComponent } from './core/layout/app-navigation/app-navigation.component';
 
 /**
  * Root application shell component (`<app-root>`).
  *
  * @remarks
- * Omitting `standalone: true` (default in Angular v20+), `changeDetection: OnPush` (default in Angular v22+),
- * and `styleUrl` (all styles reside in the single global `src/styles/styles.scss` stylesheet).
+ * Renders the fixed ambient spotlight and topographic contour SVG background layer,
+ * the sticky Material 3 navigation bar (`<app-navigation>`), and the primary `<router-outlet>`.
  */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AppNavigationComponent],
   templateUrl: './app.html',
 })
-export class App {
-  /**
-   * Application display title signal.
-   */
-  protected readonly title = signal<string>('web');
-}
+export class App {}
