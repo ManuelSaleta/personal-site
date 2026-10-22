@@ -1,8 +1,0 @@
-packages:
-  - '.'
-  
-allowBuilds:
-  '@firebase/util': true
-  '@parcel/watcher': true
-  esbuild: true
-  protobufjs: true
